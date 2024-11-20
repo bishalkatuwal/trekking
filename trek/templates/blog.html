@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container" style="justify-content: center;">
+    <h1 style="text-align:center;">Explore our Travel Blog </h1>
+</div>
+
+
+
+{% for blog in object_list %}
+
+
+<div class="row mb-4">
+    <div class="col md-md-4">
+        <div class="card" style="width: 18rem;">
+
+            <img class="card-img-top" src="{{ blog.header_image.url }}" alt="Card image cap">
+
+
+            <div class="card-body">
+
+                <a href="{% url 'detail' blog.pk %}">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                </a>
+                <p class="card-text">{{ blog.author.first_name}} {{ blog.author.last_name}}</p>
+                <a href="{% url 'detail' blog.pk %}" class="btn btn-primary" style="border-radius: 20px;"> Continue
+                    Reading </a>
+            </div>
+        </div>
+    </div>
+
+
+    {% endfor %}
+
+
+    {% endblock %}

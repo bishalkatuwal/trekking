@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+        <div class="container">
+                {% for page in object_list %}
+                
+                {{ page.title }}
+
+                {{ page.description|safe }}
+                
+                </p>
+                {% endfor %}
+         </div>
+
+
+
+{% endblock %}

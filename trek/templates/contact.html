@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<div class="container">
+        
+    <h5>Any Querise ? Let us Know </h5>
+
+    <br>
+    <hr>
+    
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+
+
+        {% if user.is_authenticated %}
+            <button class="btn btn-info" type="submit">Submit</button>
+        {% else %}
+       <a href="{% url 'login'%}"> <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Login First !!">
+            Login
+          </button></a>
+        {% endif %} 
+
+    </div>
+
+</div>
+
+
+{% endblock %}

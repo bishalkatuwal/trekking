@@ -1,0 +1,17 @@
+<!-- this is for the dropdown button travel informations in navbar -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+        <div class="container">
+                <h1 style="text-align:center;">{{ travelinfo.title }}</h1>
+                <p>
+                {{ travelinfo.Description |safe}}
+                </p>
+         </div>
+
+
+
+{% endblock %}

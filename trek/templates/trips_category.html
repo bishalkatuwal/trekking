@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<li>
+
+{% for category in categories %}
+    {{ category.title }}
+{% endfor %}
+
+</li>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+        <h1>{{profile.user.first_name }} {{ profile.user.last_name }}</h1>
+        
+    {% if user.profile.profile_pic %}
+        <img src="{{ user.profile.profile_pic.url }}" width="100" height="100" style="border-radius: 50%;">
+    {% else %}
+        <h4>no photo</h4>
+    {% endif %}
+
+
+
+    <p>{{ profile.bio }}</p>
+    <!-- Add any additional profile fields here -->
+</div>
+
+<a href="{% url 'profile-edit' %}">Edit</a>
+{% endblock %}

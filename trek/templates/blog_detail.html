@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    
+<div class="container">
+
+    <h1>{{ blog.title }}</h1>
+            
+    by: <h6>{{ blog.author.first_name }}</h6> {{ blog.post_date }}
+
+   {{ blog.body|safe}}
+
+
+
+</div>
+         
+  
+
+{% endblock %}
