@@ -2,7 +2,7 @@ from django.urls import path
 # from.views import home_view
 
 
-from.views import ContactView, TripDetailView ,PageDetailView ,PageView ,TraveInfoDetailView ,HomeView ,BlogView, TraveInfoView ,BlogDetailView, AddReviewView,AboutUsView ,ReviewView, TripsView
+from.views import ContactView , TripDetailView ,TripCategoryListView, TripCategoryDetailView  ,PageDetailView ,PageView ,TraveInfoDetailView ,HomeView ,BlogView, TraveInfoView ,BlogDetailView, AddReviewView,AboutUsView ,ReviewView
 
 
 
@@ -20,15 +20,13 @@ urlpatterns = [
     path('travel/', TraveInfoView.as_view(), name='travel'),
     path('travel/detail<int:pk>',TraveInfoDetailView.as_view(), name='travel-detail' ),
     path('page/', PageView.as_view(), name='page'),
-    path('trip/<int:pk>/',TripDetailView.as_view(), name='trip-detail'),
+    
+    path('trips/<slug:slug>/', TripDetailView.as_view(), name='trip_detail'),
+    path('trip-category/<slug:slug>/', TripCategoryDetailView.as_view(), name='trip_category_detail'),
+    path('trip-categories/', TripCategoryListView.as_view(), name='trip_category_list'),
 
 
-    path('trips/', TripsView.as_view(), name='trips'),
-
+    
     path('<slug:slug>/', PageDetailView.as_view(), name='page_detail'),
-    
-    
-  
- 
 
 ]

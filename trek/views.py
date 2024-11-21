@@ -113,26 +113,6 @@ class TraveInfoDetailView(DetailView):
 
 
 
-class TripsView(ListView):
-    model = Trip
-    template_name = 'trips.html'
-
-    def get_context_data(self, *args, **kwargs):
-       context = super(TripsView, self).get_context_data(*args, **kwargs)
-    #    trips = get_list_or_404(TripsView, id=self.kwargs['pk'])
-       return context
-
-
-class TripDetailView(DetailView):
-    model = Trip
-    template_name = 'trip_detail.html'
-
-
-    def get_queryset(self):
-        
-        # Exclude trips with no primary key or any other condition
-        return Trip.objects.exclude(pk=None)
-
 
 class PageView(ListView):
     model = Page
@@ -157,3 +137,27 @@ class PageDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['children'] = self.object.child_pages.all()  # Pass child pages to the template
         return context
+
+
+class TripCategoryListView(ListView):
+    model = TripCategory
+    template_name = 'trip_category.html'  # Template for the trip category list
+    context_object_name = 'categories'
+
+
+class TripCategoryDetailView(DetailView):
+    model = TripCategory
+    template_name = 'trip_category_detail.html'  # Template for trips under a category
+    context_object_name = 'trip_category'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get trips associated with this category
+        context['trips'] = Trip.objects.filter(trip_category=self.object)
+        return context
+
+
+class TripDetailView(DetailView):
+    model = Trip
+    template_name = 'trips_details.html'  # Create this template for trip details
+    context_object_name = 'trip' 

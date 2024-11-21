@@ -8,6 +8,7 @@ from ckeditor.fields import RichTextField
 
 
 
+
 # Create your models here.
 
 class Contact(models.Model):
@@ -82,30 +83,48 @@ class Destination(models.Model):
 
 
 
-class Trip(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField( blank=True,  null=True ,upload_to = 'trips_pics/')
-    summary = models.TextField(blank=True, null=True)
 
+
+class TripCategory(models.Model):
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(blank=True, null=True)
+    image = models.ImageField(upload_to='trip_pics', blank=True, null=True)
+    summary = models.TextField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
 
-class TripCategory(models.Model):
-    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='categories',blank=True, null=True)
-    title = models.CharField(max_length=50)
-    description = FroalaField(blank=True, null=True)
-    destination = models.ForeignKey(
-        'Destination', on_delete=models.CASCADE, related_name='trip_categories', blank=True, null=True
+
+
+class Trip(models.Model):
+    trip_category = models.ForeignKey(
+        TripCategory,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='trips',  # Enables reverse query from TripCategory to Trips
     )
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(null=True, blank=True)
+    summary = models.TextField(blank=True, null=True)
+    description = FroalaField(default="Default description text")
+    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='trips', default=1)
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(default=timezone.now)
+    available_seats = models.PositiveBigIntegerField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    available_seats = models.PositiveIntegerField(null=True,blank=True)
 
     def __str__(self):
-        return f"{self.title} "
+        return self.title
+
+
+
+
 
 
 class TripImage(models.Model):

@@ -32,6 +32,8 @@
                      <li><a href="{% url 'user_register' %}" class="btn btn-danger"><i class="fas fa-user-plus"></i> Register</a>
             {% endif %}
 
+            <a href="{% url 'profile-detail' %}">{{ request.user}}</a>
+
 
 
             
@@ -83,46 +85,13 @@
             <li><a href="{% url 'review-view' %}">Reviews</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contact-page' %}">Contact</a></li>
-            <li><a href="{% url 'trips' %}">Trips</a></li>
+            <li><a href="{% url 'trip_category_list' %}">Trips</a></li>
 
 
         </ul>
     </div>
     </div>
 
-
-
-    
-    <!-- 
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="travelDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Trips
-    </a>
-    <div class="dropdown-menu" aria-labelledby="travelDropdown">
-        {% for trips in trip %}
-        <a class="dropdown-item" href="#"> <b>{{ trips.title }}</b>
-
-            <ul>
-                {% for category in categories %}
-                    <li><a class="dropdown-item" href="#">{{ category.title }}</a></li>
-                {% endfor %}
-            
-                
-            </ul>
-            
-
-        </a>
-        
-        {% endfor %}
-
-
-
-
-        <a class="dropdown-item" href="#" style="font-weight: bold;">See more</a>
-    </div>
-</li>
- -->
 
 
 

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ trip.title }}</h1>
+    <p><i class="fa fa-map-marker-alt"></i> <strong>Destination:</strong> {{ trip.destination }}</p>
+    <p><i class="fa fa-calendar-day"></i> <strong>Start Date:</strong> {{ trip.start_date }}</p>
+    <p><i class="fa fa-calendar-alt"></i> <strong>End Date:</strong> {{ trip.end_date }}</p>
+    <p><i class="fa fa-dollar-sign"></i> <strong>Price:</strong> ${{ trip.price }}</p>
+    <p><i class="fa fa-users"></i> <strong>Available Seats:</strong> {{ trip.available_seats }}</p>
+    <hr>
+    <p>{{ trip.description|safe }}</p>
+</div>
+
+<style>
+
+/* Container styling for proper alignment */
+.container {
+    max-width: 900px;
+    margin-top: 50px;
+}
+
+/* Styling for icons */
+.fa {
+    color: #007bff;  /* Blue color for icons */
+    margin-right: 10px;  /* Add space between icon and text */
+}
+
+/* Styling for headings and text */
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Paragraph styling */
+p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Bold label styling */
+strong {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Horizontal line styling */
+hr {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Overall layout for a neat look */
+.container p {
+    margin-bottom: 15px;
+}
+
+
+</style>
+
+
+{% endblock %}
