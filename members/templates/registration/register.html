@@ -1,18 +1,20 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block content %}
-
-
-<h1>Join The Family </h1>
-<hr><br>
-<div class="container">
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <p>Already registered ? <a href="{% url 'login' %}">Click Here </a></p>
-        <button class="btn btn-info" type="submit">Submit</button>
-
-
+<div class="register-container">
+    <div class="register-card">
+        <h1 class="title">Join The Family</h1>
+        <hr class="divider">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+            <p class="already-registered">
+                Already registered? <a href="{% url 'login' %}">Click Here</a>
+            </p>
+            <button class="btn btn-submit" type="submit">Register</button>
+        </form>
     </div>
 </div>
 

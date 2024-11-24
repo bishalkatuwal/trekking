@@ -48,6 +48,7 @@ class Blog(models.Model):
 class Review(models.Model):
     rating = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_date = models.DateField(default=timezone.now)
     body = models.TextField()
 
     def __str__(self):
