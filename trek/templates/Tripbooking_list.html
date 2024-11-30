@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="booked-trips-container">
+    <h1>Your Booked Trips</h1>
+
+    <!-- Display messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    <i class="fa {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'info' %}fa-info-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% endif %}"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if tripbooking_list %}
+        <ul class="trip-list">
+            {% for booking in tripbooking_list %}
+                <li class="trip-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <a href="{% url 'trip_detail' booking.trip.slug %}" class="trip-title">{{ booking.trip.title }}</a> - 
+                    <span class="trip-date">{{ booking.trip.date }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-trips">You have no booked trips yet.</p>
+    {% endif %}
+</div>
+
+
+
+</div>
+
+
+
+
+
+<style>
+
+.booked-trips-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.booked-trips-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.alert i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.alert.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.alert.info {
+    background-color: #d9edf7;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+}
+
+.alert.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+.trip-list {
+    list-style: none;
+    padding: 0;
+}
+
+.trip-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+}
+
+.trip-item i {
+    margin-right: 10px;
+    color: #007bff;
+    font-size: 1.2rem;
+}
+
+.trip-title {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.trip-date {
+    color: #666;
+}
+
+.no-trips {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+
+</style>
+{% endblock %}

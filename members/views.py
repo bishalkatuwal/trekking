@@ -18,8 +18,9 @@ class ProfileDetailView(DetailView):
 
     
     def get_object(self, queryset=None):
-       profile, created = Profile.objects.get_or_create(user=self.request.user)
-       return profile
+        
+        profile, created = Profile.objects.get_or_create(user=self.request.user)
+        return profile
 
 
 class ProfileEditView(UpdateView):

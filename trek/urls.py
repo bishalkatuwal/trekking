@@ -2,14 +2,36 @@ from django.urls import path
 # from.views import home_view
 
 
-from.views import ContactView , TripDetailView ,TripCategoryListView, TripCategoryDetailView  ,PageDetailView ,PageView ,TraveInfoDetailView ,HomeView ,BlogView, TraveInfoView ,BlogDetailView, AddReviewView,AboutUsView ,ReviewView
+from.views import ( ContactView ,
+                    TripDetailView ,
+                    TripCategoryListView, 
+                    TripCategoryDetailView,
+                    PageDetailView,
+                    PageView,
+                    TraveInfoDetailView,
+                    HomeView,
+                    BlogView,
+                    TraveInfoView,
+                    BlogDetailView,
+                    AddReviewView,
+                    AboutUsView,
+                    ReviewView,
+                    TripBookingListView,
+                    BookingTripView
+
+)
 
 
 
 
 urlpatterns = [
 
-    # path('',home_view, name='home'),
+   # Trip Booking List
+    path('tripbook-list/', TripBookingListView.as_view(), name='tripbook_list'),
+
+    # Booking a Trip
+    path('booking-list/<int:trip_id>/', BookingTripView.as_view(), name='booking_trip'),
+    
     path('', HomeView.as_view(), name='home'),
     path('contatc/', ContactView.as_view(), name='contact-page'),
     path('blog/', BlogView.as_view(), name='blog'),

@@ -17,6 +17,7 @@
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Logout</button>
+                    <a href="{% url 'profile-detail' %}">{{ request.user}}</a>
                 </form>
 
                  {% if user.profile.profile_pic %}
@@ -35,7 +36,7 @@
                      <li><a href="{% url 'user_register' %}" class="btn btn-danger"><i class="fas fa-user-plus"></i> Register</a>
             {% endif %}
 
-            <a href="{% url 'profile-detail' %}">{{ request.user}}</a>
+           
 
 
 
@@ -88,6 +89,12 @@
             <li><a href="{% url 'review-view' %}">Reviews</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contact-page' %}">Contact</a></li>
+
+{% if user.is_authenticated %}
+        <a href="{% url 'tripbook_list' %}"> View My Booked Trips </a>
+{% endif %}
+
+
             <li><a href="{% url 'trip_category_list' %}">Trips</a></li>
 
 

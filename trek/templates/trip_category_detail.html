@@ -20,6 +20,22 @@
                     </div>
                     <p>{{ trip.summary|truncatechars:100 }}</p>
                     <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">View Details</a>
+<!-- trip booking -->
+                    {% if user.is_authenticated %}
+                        <form 
+                            action="{% url 'booking_trip' trip.id %}" 
+                            method="POST" 
+                            style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">
+                                Book Trip
+                            </button>
+                        </form>
+                    {% else %}
+                        <p>
+                            <a href="{% url 'login' %}">Log in</a> to book this trip.
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>

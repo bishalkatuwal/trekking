@@ -191,3 +191,17 @@ class ChildPage(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class TripBooking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    add_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'trip')
+    
+    def __str__(self):
+        return f"{self.user.username}'s list - {self.trip.title}"
+
