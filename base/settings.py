@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'trek',
     'froala_editor',
     'ckeditor',
-    'members'
+    'members',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

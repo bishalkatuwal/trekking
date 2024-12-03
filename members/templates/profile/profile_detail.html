@@ -1,26 +1,259 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<div class="container">
-        <h1>{{profile.user.first_name }} {{ profile.user.last_name }}</h1>
-        
-    {% if user.profile.profile_pic %}
-        <img src="{{ user.profile.profile_pic.url }}" width="100" height="100" style="border-radius: 50%;">
-    {% else %}
-        <h4>no photo</h4>
-    {% endif %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+    </div>
+    
+    <div class="profile-image">
+        {% if user.profile.profile_pic %}
+            <img src="{{ user.profile.profile_pic.url }}" class="profile-pic" alt="Profile Picture">
+        {% else %}
+            <img src="https://www.freeiconspng.com/thumbs/profile-icon-png/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" class="profile-pic" alt="Default Profile Picture">
+        {% endif %}
+    </div>
 
+    <div class="profile-bio">
+        <p>{{ profile.bio }}</p>
+    </div>
 
-
-    <p>{{ profile.bio }}</p>
     <!-- Add any additional profile fields here -->
+    <a href="{% url 'profile-edit' %}" class="edit-link">Edit Profile</a>
 </div>
 
-<a href="{% url 'profile-edit' %}">Edit</a>
+<!-- booking trips section -->
 
+<div class="booked-trips-container">
+    <h1>Your Booked Trips</h1>
 
+    <!-- Display messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    <i class="fa {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'info' %}fa-info-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% endif %}"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
+    {% if tripbooking_list %}
+        <ul class="trip-list">
+            {% for booking in tripbooking_list %}
+                <li class="trip-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <a href="{% url 'trip_detail' booking.trip.slug %}" class="trip-title">{{ booking.trip.title }}</a> 
+                    <span class="trip-date">{{ booking.add_date }}</span>
 
+                    <form action="{% url 'remove_from_list' item_id=booking.id %}" method="post" class="remove-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-trips">You have no booked trips yet.</p>
+    {% endif %}
+</div>
+
+<style>
+/* Profile Container */
+.profile-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Profile Header */
+.profile-header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Profile Image */
+.profile-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Bio */
+.profile-bio {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+/* Edit Profile Link */
+.edit-link {
+    display: block;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 20px;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+.edit-link:hover {
+    background-color: #e1e1e1;
+    color: #0056b3;
+}
+
+/* Booked Trips Container */
+.booked-trips-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.booked-trips-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+/* Message Display Styles */
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.alert i {
+    margin-right: 12px;
+    font-size: 1.6rem;
+}
+
+/* Alert Styling */
+.alert.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.alert.info {
+    background-color: #d9edf7;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+}
+
+.alert.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+/* Trip List Styles */
+.trip-list {
+    list-style: none;
+    padding: 0;
+}
+
+.trip-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+.trip-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.trip-item i {
+    color: #007bff;
+    font-size: 1.3rem;
+    margin-right: 12px;
+}
+
+.trip-title {
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.trip-title:hover {
+    color: #0056b3;
+}
+
+.trip-date {
+    color: #888;
+    font-size: 1rem;
+}
+
+.remove-form {
+    margin-left: 15px;
+}
+
+.remove-form button {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.remove-form button:hover {
+    background-color: #ff1a1a;
+}
+
+/* No trips message */
+.no-trips {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+</style>
 
 {% endblock %}

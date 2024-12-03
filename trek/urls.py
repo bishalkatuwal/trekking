@@ -16,9 +16,6 @@ from.views import ( ContactView ,
                     AddReviewView,
                     AboutUsView,
                     ReviewView,
-                    TripBookingListView,
-                    BookingTripView
-
 )
 
 
@@ -27,10 +24,7 @@ from.views import ( ContactView ,
 urlpatterns = [
 
    # Trip Booking List
-    path('tripbook-list/', TripBookingListView.as_view(), name='tripbook_list'),
-
-    # Booking a Trip
-    path('booking-list/<int:trip_id>/', BookingTripView.as_view(), name='booking_trip'),
+    
     
     path('', HomeView.as_view(), name='home'),
     path('contatc/', ContactView.as_view(), name='contact-page'),

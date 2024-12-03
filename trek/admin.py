@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Contact, Blog,ChildPage, TripImage ,Page ,Category,Review, TravelInfo, TripCategory, Trip, Destination
+from .models import Contact, Blog,ChildPage, TripImage ,Page ,Category,Review, TravelInfo, TripCategory, Trip, Destination, TripBooking
+
 # Register your models here.
 
 
@@ -18,3 +19,4 @@ admin.site.register(Destination)
 admin.site.register(Page)
 admin.site.register(ChildPage)
 admin.site.register(TripImage)
+admin.site.register(TripBooking)

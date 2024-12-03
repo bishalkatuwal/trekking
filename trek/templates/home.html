@@ -90,11 +90,6 @@
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contact-page' %}">Contact</a></li>
 
-{% if user.is_authenticated %}
-        <a href="{% url 'tripbook_list' %}"> View My Booked Trips </a>
-{% endif %}
-
-
             <li><a href="{% url 'trip_category_list' %}">Trips</a></li>
 
 
