@@ -5,7 +5,7 @@ from datetime import date, datetime
 from django.utils.text import slugify
 from django.utils import timezone
 from ckeditor.fields import RichTextField
-
+from django.urls import reverse
 
 
 
@@ -204,4 +204,7 @@ class TripBooking(models.Model):
     
     def __str__(self):
         return f"{self.user.username}'s list - {self.trip.title}"
+
+
+
 

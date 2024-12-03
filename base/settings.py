@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'froala_editor',
     'ckeditor',
     'members',
-    'django_extensions',
 ]
 
 MIDDLEWARE = [
