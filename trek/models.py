@@ -9,6 +9,8 @@ from django.urls import reverse
 
 
 
+
+
 # Create your models here.
 
 class Contact(models.Model):
@@ -126,16 +128,18 @@ class Trip(models.Model):
 
 
 
-
-
-class TripImage(models.Model):
-    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='trip_images/')
+class TripMedia(models.Model):
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='media')
+    image = models.ImageField(upload_to='trip_images/', null=True, blank=True)
+    video = models.FileField(upload_to='trips_videos/', null=True, blank=True)
     caption = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"Image for {self.trip.title}"
-
+        if self.image:
+            return f"Image for {self.trip.title}"
+        elif self.video:
+            return f"Video for {self.trip.title}"
+        return f"Media for {self.trip.title}"
 
 
 

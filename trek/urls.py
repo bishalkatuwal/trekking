@@ -16,6 +16,7 @@ from.views import ( ContactView ,
                     AddReviewView,
                     AboutUsView,
                     ReviewView,
+                   MediaListView
 )
 
 
@@ -25,7 +26,7 @@ urlpatterns = [
 
    # Trip Booking List
     
-    
+    path('trip-media/', MediaListView.as_view(), name='image_video'),
     path('', HomeView.as_view(), name='home'),
     path('contatc/', ContactView.as_view(), name='contact-page'),
     path('blog/', BlogView.as_view(), name='blog'),
