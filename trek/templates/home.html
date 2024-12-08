@@ -112,13 +112,6 @@
 <br>
 <hr>
 
-<p>
-  <a href="{% url 'image_video' %}">Trip images</a>    
-</p>
-
-
-
-
 <ul>
     {% for page in pages %}
     <li><a href="{% url 'page_detail' page.slug %}">{{ page.title }}</a></li> <!-- Assuming 'slug' is present -->
