@@ -22,9 +22,10 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # You can add other context data here
-        context['trip'] = Trip.objects.all()
-        context['categories'] = TripCategory.objects. select_related('trip','destination').all()
-        context['pages'] = Page.objects.all()         
+        context['trips'] = Trip.objects.all()
+        context['categories'] = TripCategory.objects. select_related('trip','categories').all()
+        context['pages'] = Page.objects.all()  
+        context['blogs'] = Blog.objects.all()    
         return context
 
     def get_queryset(self):
@@ -40,6 +41,8 @@ class ContactView(CreateView):
     success_url = reverse_lazy('home')
 
 
+
+
 class BlogView(ListView):
     model = Blog
     template_name = 'blog.html'
@@ -47,6 +50,10 @@ class BlogView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(BlogView, self).get_context_data(*args, **kwargs)
         return context
+
+     
+
+
 
 class BlogDetailView(DetailView):
     model = Blog

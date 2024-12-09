@@ -36,9 +36,10 @@ class Category(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=225)  
+    summary = models.TextField(blank=True, null=True)
     header_image = models.ImageField(blank=True, null=True, upload_to='images/')
     category = models.ForeignKey( Category,  on_delete=models.SET_NULL , blank=True, null=True)
-    author = models.ForeignKey( User, on_delete=models.CASCADE )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     body = FroalaField()
     post_date = models.DateTimeField(auto_now_add=True)
 
@@ -113,6 +114,7 @@ class Trip(models.Model):
         related_name='trips',  # Enables reverse query from TripCategory to Trips
     )
     title = models.CharField(max_length=100)
+    cover_img = models.ImageField(upload_to='trips/cover_img', blank=True, null=True)
     slug = models.SlugField(null=True, blank=True)
     summary = models.TextField(blank=True, null=True)
     description = FroalaField(default="Default description text")

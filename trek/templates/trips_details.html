@@ -12,91 +12,70 @@
     <p>{{ trip.description|safe }}</p>
 </div>
 
-
 <div class="container">
-    <p style="justify-content: center; text-align: center; font-weight: bold; color: black;">
-        Gallery of Our Trips And Tours
-    </p>
+    <h2 class="gallery-title">Gallery of Our Trips And Tours</h2>
 </div>
-
 
 <div class="media-container">
     {% for item in media %}
         <div class="media-item">
+            <img src="{{ item.image.url }}" alt="{{ item.caption }}" class="media-image">
             
-                <img src="{{ item.image.url }}" alt="{{ item.caption }}">
-
-                    {% if item.video %}
-                        <video width="320" height="240" controls>
-                            <source src="{{ item.video.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    {% endif %}    
+            {% if item.video %}
+                <video class="media-video" controls>
+                    <source src="{{ item.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+            
             {% if item.caption %}
-                <p>{{ item.caption }}</p>
+                <p class="media-caption">{{ item.caption }}</p>
             {% endif %}
         </div>
     {% endfor %}
 </div>
 
+
+
+
 <style>
 /* images and videos */
 
+.container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-/* General Container */
+.gallery-title {
+    font-weight: bold;
+    color: black;
+    font-size: 1.5rem;
+}
+
 .media-container {
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
-    justify-content: center; /* Centers the items horizontally */
-    gap: 20px; /* Adds space between the media items */
-    padding: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-/* Each Media Item */
 .media-item {
-    width: 320px; /* Fixed width for each item */
-    background-color: #f9f9f9; /* Light background color */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Prevents content from spilling out */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow around the item */
-    transition: transform 0.3s ease; /* Smooth hover effect */
-}
-
-/* Hover Effect */
-.media-item:hover {
-    transform: scale(1.05); /* Slightly enlarges the item on hover */
-}
-
-/* Image Style */
-.media-item img {
-    width: 100%; /* Makes the image take up the full width of the container */
-    height: auto; /* Maintains the image's aspect ratio */
-    border-bottom: 2px solid #ccc; /* Adds a border below the image */
-}
-
-/* Video Style */
-.media-item video {
-    width: 100%; /* Makes the video take up the full width */
-    border-bottom: 2px solid #ccc; /* Adds a border below the video */
-}
-
-/* Caption Style */
-.media-item p {
-    padding: 10px;
-    font-size: 14px;
-    color: #333;
+    flex: 1 1 calc(33% - 20px); /* Adjust for responsiveness */
+    max-width: 300px;
     text-align: center;
-    margin: 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .media-item {
-        width: 100%; /* Makes items full-width on smaller screens */
-    }
+.media-image, .media-video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-
+.media-caption {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
 
 
 

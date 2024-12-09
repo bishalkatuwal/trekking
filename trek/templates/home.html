@@ -1,38 +1,37 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
 
 <section id="header">
-
+    <!-- navbar content  -->
     <div class="content">
         <div class="logo">
-            <img src="data:image/jpeg;base64,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"
+            <img src="{% static 'images/download.jpg' %}"
                 width="100" height="100">
         </div>
-
         <div class="login-btn">
-
-
             {% if user.is_authenticated %}
-                <form method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger" style="border-radius: 40px;">Logout</button>
-                </form>
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" style="border-radius: 40px;">Logout</button>
+                    </form>
 
-                {% if user.profile.profile_pic %}
+                        {% if user.profile.profile_pic %}
 
-                        <a href="{% url 'profile-detail' %}">
-                            <img src="{{ user.profile.profile_pic.url }}" width="45" height="45" style="border-radius: 50%;">
-                        </a>
+                                <a href="{% url 'profile-detail' %}">
+                                    <img src="{{ user.profile.profile_pic.url }}" width="45" height="45" style="border-radius: 50%;">
+                                </a>
 
-                {% else %}
+                        {% else %}
 
-                    <a href="{% url 'profile-detail' %}">
-                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALwAyAMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwECBQYIBAP/xABGEAABAwICBwQFCAcHBQAAAAABAAIDBAUGEQcSITFBUWETcYGhFCJCYpEVFiMyQ1KxwSQzcpKy0eEIFyVzgqLwRJPC0vH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQH/2gAMAwEAAhEDEQA/AJxREQEREBW55b15bhcKe3UctXXTsp6eIF0kshyDQoRxxpWrbqX0WHe0o6I7DU5ZSzDp9xvXf3IJLxbpAsuGS+CeY1NcBspKfJzx+0dzfHb0KiDEmlHEV6LoqWUW6l39lTH1yOsh2/DJa/h3DN2xNWGK10z5hrDtZpDlGzq9x4/E96mHC+iG1W4Nmvb/AJSn39n9SFp7t7vH4IqFbbaLrfapwt9JVVkzzk97Gl3xcfzW8WjQ1f6vVfcKikt7D7IJlf8AAZDzU801LT0kLYaWGOCJoybHE0NaPAL65DNERdQaFbNCMq25V1S7kzVib+BPmszT6KcHx7X2+Sb/ADal5/AreMgqoNP/ALssG5ZfIcX/AHZP/Zeao0U4Qm2st8kH+XUSD8St5VMhyQRbX6FbNLsorlXUzjuD9WVo8gfNapdtDd/pNZ9uqaSvaPYzML/PMean7JUyCDkm52i6WKqAr6Oqo5mnIOe0t/dcPyW04b0pYisxbFVyi40o+yqT647pN/xzXRFTSU9XC6GqhjmicMnMlaHNPgVG2KNENpuQdNY5Pk2pO0RZa8Lj3b2+Gzoi1sOE9IFlxOWQQTGmriNtJPk1/wDpO53ht6BbZrLlLEWGrvhmsEV0pnwgOPZzM2sf1a7n8D0C3XA2lettmpQ4i7SroxsFTlnLD3/fb1396InpF46C4U9wo4auhmZUU8wDmSxnMEL2ICIiAiIgIiICxGIL/Q4ftctwuU/Zwx7A3L1nu4NaOJP/ADcV97xdaWzW+e4XGZsVLA3N7z5Ad+5c041xZWYsu5qqnOKnYSKanzzEbTsz6k7Myg+mNcZXHFteX1JMVIw5wUgPqs6u5nr8Fs+AdFs93bHcL+JKe3nJzKcDVkmB58Wt8z5rM6MNGzYRBesRRa0metTUbxsb7zxx6BTAGNHDzQfC32+jttJHSUFNHT08YyZHG3IBejIKqICIiAisL9mZIAAzOfBYK4Y0w3bnalZe6KN/FjZA93wbmg2BFpv96GDdfV+Wm9/YS5fwrJ2/GeG7k7Vo71RSP4MMoY74OyQZ9FYHbMwcwRs6q9AVMhyVUQeW4W+juVI+kr6aOop5Bk6ORuYKg3SBotqLOJLjYA+poBm6SB22SEDlxc3zHmp8VpY07wEHMGCcZ3DCVcZKcmaikOc9KT6r+reR6/FdF2C/UWILZFX2yYSRP3jix3FrhwIUZaT9GzJmzXvDsOrKCXVFIzc73mDgeY/+KPME4trMJ3VlVTEy08hAqafPZK0bMx7w4FB1Mi8FpulNeLfT3C3TNmpZ26zHjlyPXgvegIiICtLst6uUd6YcUmx2IW6kk1a64AtGR2xxD6zume4dT0QRzpXxib/dnW+hl/wukcQ3I7JpNxeeg2geJ4rMaH8DNrnsxDdoc6eN2dHC8bHuH2hHEDh4ngtP0f4XfijEEVI5pFHF9LVOG4MHs9Cdw/ounoIIqeFkMEbY4o26rGNGQaOQQX6rcwctyqiICIiCm7etKxxpEt2FgaZgFZciMxTscB2fIvPs928+a8+lHHHzYoWUtAWuutS3OMkZiFm4vI8gDvPQLnqaaWomfNPI+SWRxc973ElxO8klBnsSYzv+IpHC4Vz2wO3U0BMcbRyyG0+JWvDZuVAAMtm5VRoTwCIg2HDeNL9hx7fQK576du+nnzfG4cuY8FOOB9IduxUBTuHodxDc3Uz3Z6/VjvaHTePNc2ZDbs3r6U80tNOyenkfFLG8PY9hyLXDcQeaEdhA5qq0TRhjb50W409aWtulMPpsgAJW55B4HfsPXoVvaMiIiCmq3bs3qD9MGBm0Ej8Q2mHKmkd+lwNGyNx2a4HBp3HrlzU4r5VFPDUwyQ1EbZIpGlj2OGYcORQc96J8ZHD12Furpf8AC6twBJOyCTPLW6NO4/FdDh2e5cvY/wALvwrfpaMNLqR/0lK48WH2TzI3H+ql/Q9io3ywfJ9W8urbeAwuJ2yRn6rvDceo6oJEREQWSPDGlznANaCSTuA5rlnHN/diPE1ZcNYupy7Vpxn9WJp2fHafFTnpbvJtGDatsb9WetIpost41s9Y/AFQto2sYv8Ai+ip5GA08DvSJwR7DeB7zkPFFTXosw383cLQ9tGBW1eU9QctozGxvgPMlboqBoG4KqIIiIC8tdWR0FFPWVDg2CnjdJI48ANpXqUf6a7l6DgiWBriH107INn3frO8m+aCCsR3ipv97qrpVFwkqHkgE/q2j6re4BY5PzRGsEREBERAREQZPDV5qMPXymulKXF0DwXtB/WMO9p7wuq6KqjrKSGqgeHxTRiSMjiCMwuQeGS6I0L3E12CKeFxzfRyvp9vIHWb5OA8EZb8iIgIiINK0p4b+cOF5exjzraPOen2bTkPWb4jzAUGYFxA/DmJaO4FxbT63Z1A4GJx2nw2HwXU+qFzDpIsYsGL62mjYBTzu9IhAHsO4eBzHgiunGPD2hzXAtcMwRuIO4otM0S3g3jBlIJH689EfRpMztOr9U/ukIiNC093Iz3m3Wth9WmhM72+885Dyb5rM6ArWI7bcbu9vrTTCCMnfqt3+bvJR1pMrPTsdXiV25k/Yg5/cAH5FTroyofQMDWeIt1XPgEzupeS78Cg2pERAREQFEf9oJxFBZWZ7HTSu/2j+alxRdp8ozLhuhrGgn0eryPc9pH4gfFBBSIiNCIiAiIgIiICmz+z88m1XiM55NqWEeLP6KE1O+gWkMOF6yrcMhUVh1e5rQ38c0TUnoiIgiIgKJNPtr17bbruxvrQymCQ8dVw2ebfNS2tU0nUPp+BbvGG6zo4O2aOrCHfkgjfQHczDebha3OybUQicN95hyPk7yVFqmjOsNFjy0SD6sk3YuPPXBH5hEVgrvKaq6V02eZmnlfnzzcf5rrC1QCmtlJTgZCKFjAOWQAXJMPrVEWe3WkaD+8uwAAhq5EREEREBYLGtm+XsL19ubl2ksecZ5Pbtb5gfFZ1UIG1Bx49jonuZIwte0lrmHgRw8NytUnaZcHvt1wdf6FhNFVO/SWtH6mTn0a78e9RijQiIgIiICIiFVjY+WURRtLpHODWNHEncPHcuqcG2cWHDNBbdmtDEO0I4vJJd5kqJNDGD3XCubiGvjIpKV2dLrfayfe6tb+Pcp2DQNyJqqIiIIiIC8d1gFTa6ynIzE0D2Ec82kL2KhCDkWyzGlu9DNnkYaiJ2fLJw/ki+Enq1EmWzVe78URVZGmmqntdsMUhB72u/ouvIZBLEyRu57Q4eK5UxhRmixReKQD6lZK0dxJI/ELpjCNYLhhi01TTn2tJE4nrqjPzQ1mEREQREQEREHwqqSCsppKaqiZLBK0tfG4ZhwO/MKA8f6Mq2xukrrMySqtxzc5gGtJTjqPab1HjzXQa+YA5Zd3BBx5s25ElVU/Y4w9gGrdJNda6kttZxlp5mtfn1Ztz+GaiC92ex0bnG14ngrmD2fQ5Wu+ORCLWARFnbLZrPWuBueJqa3tO9no0r3Dx1QEVgcwPrbAOKkTAGjOsvssVdeY5KW2AhwYRqyTjoN7W9fhzW8YHw3gKkdHNbbhSXSsb9WWedri09GbgeuWakZuR25b+PNEW0lLBSU8VPTRMihiaGsY0ZBoHBfdERBERAREQF8p5BFE+R25jS4+AzX1WGxdWi34Wu1WTl2dJI5vfqkDzyQcrxNNRVMa3fJKAP9Tv6oslg6k9NxVZ6M55Pq4ge4EEnyKIrY9NFvNHjiacM1Y62GOVp6gZH+HzUmaFLkK7BMVOSO0oZnwkcgTrD+LyWI09Wk1Fpt92iGZpZTFKfdfu+BHmtc0E3oUmIKq1yOyZXRB0eZ+0Zty8Wk/BET0iIgIisLigvXhud1obTSOq7jVxU8Dd75Dlt/M9FpePdJtFhsvore1lbc8si0O+ihPvkceg8clBd6vVxv8AW+l3SskqJPZ1tjWD7rRuCLEr4j00wxOfDh2j7YjYKqp2M8Gjb8clG17xniK9a3yhdZzET+pid2TAO5uWfisDxBO/miLFMhmTkMzvPNDtOfFVRAREQUO05naeqzllxff7G7O3XapawfZPdrxn/S7PJYRU7tmfJBM+GtNDXvbBiWi7Lh6VSjNve5h2jwJUpWy60N1pWVduq4qmB258ZzHd0PQrkdZGx325WCtFXaqqSCXc8b2PHJzeKJHWqLQ8BaSKHEwZSVmrRXTL9U4+pL1Yf/Hf371vQPHPyRFyIiAo/wBNdyFFgmWAH6StmZC0dAdZ3k3zUgKBdOl5FXiGmtcbs46GPWeBwkeN3gAPigx2he3mtxxDPkTHRQSTOPU+qB/u8kW6aBLR6PZq+7StydVTdlGcvYZv+JJ+CqgkHEtojvtirbZKcm1MRYHfdd7J8CuXKSprLBfIZ2t1a2gqMy08HtORaei63yUDabcMm33ll7pmZU9fk2XLYGyt5/tDzBRU12e5wXe10twpXh0NTGJGZdeHhu8F71C2g7FTYnyYcrHjVeTLSOPP2meO8eKmlEWa3/Mt6ifSlpFNCZbJYJQarIipqmnPsubW+9zPD8MvpYxp837eLdbpdW61Tdjhvgj4v7zlkPE8Fz6SS7WJJOeZJO89eaASS4uJJJOZJ25578+abyM+CIjQiIgIiICIiAiIgJ1zOaIgqxzo5BJG5zXtILXNORaRy5KbtGGkf5TMdmv0rRXHJsFUdgn5Nd7/AC5qEEaS0gtcQWnMEHIg8wg7EDs92fwVyjvRRjb5x28264yZ3Wlbtcd80eex3eNx8DxUhoy8N5ucNotdVcap4bDTRmR+fTh47vFcr1dRWX+9yzObrVtdUZho4vcdje5SbpwxUJnsw5RvGrGRLWOHE+yz8z4LH6EcNmvvMl7qo86egzZDntDpXcv2R5kIJlw1aY7HY6G2QnNtNE1hd953tHxKLKZBEFVicS2Wmv8AZam2Vg+jmbkHgbWO3tcOoKyypkg5Mr6O44Zvr6aZxhrqKUOa4bMiNocPd4+SnzD2kS33DBs98qnNjmoo/wBLgB2h/DLo7Zl35LyaVMEfOO3GuoGA3aladRo2duziw9eI6965/L5IhLEDIzPY9h2Akcx0PNB6r1daq+XSpudc/OaZxeQDsaODR0A2LxJv3oiwRERRERAREQEREBERAREQEREHtst2q7Jdaa5ULwJoXa4z3OHFp6EbF0BiHSJQW7BkF7pXtfPXR/ocJ3l/HPo3j3ZLnLduV2tLIYYs5H6uyNg2gEngOpRNe+3UVwxLfo6aEmavrZi5z37iTtLj7vHyXT+HLNTWCy0tsox9HA3VLyNrzvLj1JWp6K8EfNq3+m3Bg+Vqpo1gdvYM3hgPmevcpByCCqIiIIiIKFoPBRPpU0dm4GW+WKL9MG2ppm7O2A9pvvdOPfvllU1RyQcdEHWLTm1zTkQR+SKe9IWjWnxAZblZAynuZzc+M7GVHf8AdJ58eKgquoqq31clJWwSQVERyfHI3ItP5jqPNFr4oiIoiIgIiICIiAiIgIiICIvvQ0VVcKuOkoaeSeoldkyONuZd/IdTuQfAAlwa3NznHIADid2xTbor0eG3GK+X2L9NO2npnbexH3ne904d+73aPNGlPh8x3G86lTdAM2MG1lPny+8evDhzUlareSIao2bNyqiIgiIgIiICIiChaDvWv4rwjaMUU/Z3KnHasGUVRHk2SPuPEdDsWwqmQQc24t0b3vDuvNFE64UA/wCop25uZ+23ePMdQtMzHDI+K7E1QtIxjgHD13p5a2Sj9Gqx9tSkMJ7xlkfEItc5IrywCsmhzOrGdh4nvVjfWA4dyFEQbZNXhkh2ItERDsQEV2Q2L5h3qk5BEq5Nh6eO7vX1poWy3CGmcTqSbyN4XRuE9H2HLK2Kpho/SKvhUVREjm9wyyHgAhUQYR0b3vETo5po/QKB328zSHPHuN3nyCnLCmEbRhamMVsp29q8fS1Em2SQ9TwHQbFsGqOW3mq5BEWhoAyAVyIgIiICIiD/2Q=="
-                        width="45" height="45" style="border-radius: 50%;">
-                    </a>
+                                <a href="{% url 'profile-detail' %}">
+                                    <img src="{% static 'images/profile.png' %}"
+                                    width="45" height="45" style="border-radius: 50%;">
+                                </a>
 
-                {% endif %}
+                        {% endif %}
 
 
             {% else %}
@@ -41,13 +40,8 @@
                      <li><a href="{% url 'user_register' %}" class="btn btn-danger" style="border-radius: 40px;"><i class="fas fa-user-plus"></i> Register</a>
             
             {% endif %}
-
-           
-
-
-
-            
-            </li>
+     
+    
         </div>
 
     </div>
@@ -55,23 +49,6 @@
 
     <div class="navbar">
         <ul id="nav">
-            <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="travelDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    All Trips
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="travelDropdown">
-                    {% for trip  in trips %}
-                    <a class="dropdown-item" href="{% url 'trips' pk=trip.pk %}">{{ trip.title }}</a>
-                    {% empty %}
-                    <span class="dropdown-item">Not available</span>
-
-                    {% endfor %}
-                </div>
-
-            </li> -->
-
             <!-- Ttravel info dropdown  -->
 
             <li class="nav-item dropdown">
@@ -81,42 +58,92 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="travelDropdown">
                     {% for travelinfo in object_list %}
-                    <a class="dropdown-item" href="{% url 'travel-detail' travelinfo.pk %}">{{ travelinfo.title }}</a>
+                        <a class="dropdown-item" href="{% url 'travel-detail' travelinfo.pk %}">{{ travelinfo.title }}</a>
                     {% empty %}
-                    <span class="dropdown-item">No travel info available</span>
+                        <span class="dropdown-item">No travel info available</span>
 
                     {% endfor %}
-                    <a class="dropdown-item" href="{% url 'travel' %}" style="font-weight: bold;">See more</a>
+                        <a class="dropdown-item" href="{% url 'travel' %}" style="font-weight: bold;">See more</a>
                 </div>
             </li>
-
-
-            <!-- others nav bar content  -->
+            <!--  other navbar objects  -->
             <li><a href="{% url 'review-view' %}">Reviews</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <li><a href="{% url 'contact-page' %}">Contact</a></li>
-
             <li><a href="{% url 'trip_category_list' %}">Trips</a></li>
-
-
         </ul>
     </div>
-    </div>
-
-
-
-
-
 </section>
 
 <br>
-<hr>
 
+
+
+
+<br>
+
+
+<!-- trips and camps sections -->
+
+<div class="container">
+<h5 class="trip-title">Our Trips & Camps </h5>
+</div>
+
+<div class="row">
+    {% for trip in trips %}
+        <div class="col">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-plane-departure"></i> {{ trip.title }}
+                    </h5>
+                    <p class="card-summary">
+                        <i class="fas fa-info-circle"></i> {{ trip.summary|truncatechars:200 }}
+                    </p>
+                    <p class="card-price">
+                        <i class="fas fa-dollar-sign"></i> {{ trip.price }}
+                    </p>
+                    <p class="card-seats">
+                        <i class="fas fa-users"></i> {{ trip.available_seats }} seats available
+                    </p>
+                    <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-danger">
+                        <i class="fas fa-book"></i> Continue Reading
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+<!-- blogs section -->
+<div class="travel-blog-container">
+    <h1 class="main-heading">Our Blogs</h1>
+
+    <div class="blog-cards">
+        {% for blog in blogs %}
+        <div class="blog-card">
+            <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
+            <div class="blog-content">
+                <a href="#" class="blog-title">{{ blog.title }}</a>
+                <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
+                <p class="blog-summary">{{ blog.summary|truncatechars:100 }}</p>
+                
+                <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- 
 <ul>
     {% for page in pages %}
-    <li><a href="{% url 'page_detail' page.slug %}">{{ page.title }}</a></li> <!-- Assuming 'slug' is present -->
+        <li><a href="{% url 'page_detail' page.slug %}">{{ page.title }}</a></li> 
     {% endfor %}
-</ul>
+</ul> -->
 
 
 
@@ -143,6 +170,8 @@
 
     .logo img{
         border-radius: 50%;
+        width: 60px;
+        height: 60px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 
@@ -187,7 +216,236 @@
     color: white; /* Changes text color on hover */
 }
 
-</style>
 
+/* trips  */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Column Styling */
+.col {
+    flex: 1 1 calc(33% - 20px); /* Three columns on larger screens */
+    box-sizing: border-box;
+}
+
+/* Card Styling */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 600px;
+    height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card Body */
+.card-body {
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+
+}
+
+/* Card Title */
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Summary, Price, Seats */
+.card-summary, .card-price, .card-seats {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Button Styling */
+.btn-danger {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}
+
+/* Font Awesome Icon Styling */
+.card-title i, .card-summary i, .card-price i, .card-seats i {
+    margin-right: 5px;
+    color: #d9534f;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.trip-title {
+  font-size: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif  ;
+  font-weight: bold;
+  color: black; 
+  text-align: center; 
+  margin-top: 20px;
+}
+
+
+/* blog sections */
+
+
+/* Travel Blog Container */
+.travel-blog-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Main Heading */
+.main-heading {
+    font-size: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif  ;
+  font-weight: bold;
+  color: black; 
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20PX;
+}
+
+/* Blog Cards Container */
+.blog-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Blog Card */
+.blog-card {
+    background: #ffffff;
+    border-radius: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Blog Image */
+.blog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Blog Content */
+.blog-content {
+    padding: 20px;
+    text-align: left;
+    color: #333;
+}
+
+.blog-title {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+
+
+.blog-author {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.blog-summary {
+    font-size: 14px;
+    color: #555;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Read More Button */
+.btn-danger {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: red;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: rgb(124, 1, 1);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .blog-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .main-heading {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+}
+</style>
 
 {% endblock %}

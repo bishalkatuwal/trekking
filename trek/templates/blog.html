@@ -7,11 +7,13 @@
     <div class="blog-cards">
         {% for blog in object_list %}
         <div class="blog-card">
-            <img class="blog-image" src="{{ blog.header_image.url }}" alt="Card image cap">
+            <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
             <div class="blog-content">
                 <a href="{% url 'detail' blog.pk %}" class="blog-title">{{ blog.title }}</a>
                 <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
-                <a href="{% url 'detail' blog.pk %}" class="btn-read-more">Continue Reading</a>
+                <p class="blog-summary">{{ blog.summary|truncatechars:200 }}</p>
+                
+                <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
             </div>
         </div>
         {% endfor %}
@@ -30,17 +32,19 @@ body {
 /* Travel Blog Container */
 .travel-blog-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
+    text-align: center;
 }
 
 /* Main Heading */
 .main-heading {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 40px;
+    font-weight: 600;
     color: #2c3e50;
     margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* Blog Cards Container */
@@ -54,66 +58,80 @@ body {
 /* Blog Card */
 .blog-card {
     background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    width: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 280px;
+    margin-bottom: 30px;
 }
 
 .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Blog Image */
 .blog-image {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
+    border-bottom: 2px solid #ddd;
 }
 
 /* Blog Content */
 .blog-content {
-    padding: 15px;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
+    color: #333;
 }
 
 .blog-title {
-    font-size: 20px;
-    color: #2c3e50;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
     text-decoration: none;
-    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.4;
 }
 
 .blog-title:hover {
     color: #007bff;
+    text-decoration: underline;
 }
 
 .blog-author {
-    font-size: 14px;
+    font-size: 12px;
     color: #7f8c8d;
-    margin: 10px 0;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.blog-summary {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 /* Read More Button */
-.btn-read-more {
+.btn-danger {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    background: linear-gradient(to right, #007bff, #0056b3);
+    font-weight: 600;
+    color: #fff;
+    background: red;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-read-more:hover {
-    background: linear-gradient(to right, #0056b3, #003d80);
+.btn-danger:hover {
+    background-color: rgb(124, 1, 1);
     transform: translateY(-3px);
 }
 
@@ -130,7 +148,8 @@ body {
     }
 
     .main-heading {
-        font-size: 28px;
+        font-size: 30px;
+        margin-bottom: 30px;
     }
 }
 </style>

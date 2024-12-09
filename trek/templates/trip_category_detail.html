@@ -21,6 +21,8 @@
                     <p>{{ trip.summary|truncatechars:100 }}</p>
                     <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">View Details</a>
 <!-- trip booking -->
+
+
                     {% if user.is_authenticated %}
                         <form 
                             action="{% url 'booking_trip' trip.id %}" 
