@@ -16,6 +16,41 @@
     </div>
 </div>
 
+
+
+
+<div class="blog-media-container">
+    {% for item in blogs %}
+        <div class="media-item">
+            {% if item.image %}
+                <div class="media-image">
+                    <img src="{{ item.image.url }}" alt="Blog image">
+                </div>
+            {% endif %}
+            {% if item.video %}
+                <div class="media-video">
+                    <video controls>
+                        <source src="{{ item.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
 /* Blog Detail Page Styles */
 body {
@@ -97,6 +132,77 @@ body {
         font-size: 16px;
     }
 }
+
+
+/* Blog medias */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Blog Media Container */
+.blog-media-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    background-color: #f9f9f9; /* Light gray background for contrast */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Individual Media Item */
+.media-item {
+    width: 300px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Image Styling */
+.media-image img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Video Styling */
+.media-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 0 0 8px 8px;
+    outline: none;
+}
+
+/* Text Centering (Optional, if captions or additional text are needed) */
+.media-item p {
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .media-item {
+        width: 100%;
+    }
+}
+
 </style>
 
 {% endblock %}

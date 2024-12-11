@@ -14,7 +14,6 @@ from.views import ( ContactView ,
                     TraveInfoView,
                     BlogDetailView,
                     AddReviewView,
-                    AboutUsView,
                     ReviewView,
                    MediaListView
 )
@@ -33,7 +32,6 @@ urlpatterns = [
     path('detail/<int:pk>', BlogDetailView.as_view(), name='detail'),
     path('review/', AddReviewView.as_view(), name='review'),
     path('review/view/', ReviewView.as_view(), name='review-view'),
-    path('about_us/', AboutUsView.as_view(), name='about'),
     path('travel/', TraveInfoView.as_view(), name='travel'),
     path('travel/detail<int:pk>',TraveInfoDetailView.as_view(), name='travel-detail' ),
     path('page/', PageView.as_view(), name='page'),

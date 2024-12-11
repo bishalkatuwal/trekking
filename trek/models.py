@@ -42,10 +42,25 @@ class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     body = FroalaField()
     post_date = models.DateTimeField(auto_now_add=True)
-
+   
 
     def __str__(self):
         return f"{self.title} | {self.author}"
+
+
+class BlogMedia(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_media')
+    image = models.ImageField(upload_to='blog/images', blank=True, null=True)
+    vedio = models.FileField(upload_to='blog/video', blank=True, null=True)
+
+    def __str__(self):
+        if self.image:
+            return f"Image for {self.blog.title}"
+        elif self.video:
+            return f"Video for {self.blog.title}"
+        return f"Media for {self.blog.title}"
+
+
 
 
 class Review(models.Model):
@@ -57,13 +72,6 @@ class Review(models.Model):
     def __str__(self):
         return f"{self.rating}"
 
-
-class AboutUs(models.Model):
-    title = models.CharField(max_length=100)
-    body = FroalaField()
-
-    def __str__(self):
-        return f"{self.title}"
 
 
 

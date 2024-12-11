@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Blog,ChildPage ,Page ,Category,Review, TravelInfo, TripCategory, Trip, Destination, TripBooking, TripMedia
+from .models import Contact, Blog,ChildPage ,Page ,Category,Review, TravelInfo, TripCategory, Trip, Destination, TripBooking, TripMedia, BlogMedia
 
 
 
@@ -30,3 +30,4 @@ admin.site.register(Page)
 admin.site.register(ChildPage)
 admin.site.register(TripBooking)
 admin.site.register(TripMedia)
+admin.site.register(BlogMedia)

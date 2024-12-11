@@ -4,7 +4,7 @@ from .forms import ContactForm, ReviewForm
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review, AboutUs, TravelInfo, Trip, Page, TripCategory , TripBooking, TripMedia
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , TripBooking, TripMedia, BlogMedia
 from django.contrib import messages
 
 
@@ -22,7 +22,7 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # You can add other context data here
-        context['trips'] = Trip.objects.all()
+        context['trips'] = Trip.objects.all()[:2]
         context['categories'] = TripCategory.objects. select_related('trip','categories').all()
         context['pages'] = Page.objects.all()  
         context['blogs'] = Blog.objects.all()    
@@ -61,7 +61,9 @@ class BlogDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
-        blog = get_object_or_404(Blog, id= self.kwargs['pk'])
+        blog = self.object  # Use the object retrieved by DetailView
+        blog_media = BlogMedia.objects.filter(blog=blog)  # Fetch related BlogMedia
+        context['blogs'] = blog_media
         return context
 
 
@@ -86,15 +88,6 @@ class ReviewView(ListView):
         context  =super(ReviewView,self).get_context_data( *args, **kwargs)
         return context
 
-
-
-class AboutUsView(ListView):
-    model = AboutUs
-    template_name = 'aboutus.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(AboutUsView, self).get_context_data( *args, **kwargs)
-        return context
 
 
 

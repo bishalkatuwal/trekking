@@ -22,7 +22,7 @@
 </div>
 
 {% if not user.is_authenticated %}
-        <div id="alert-message" class="not-logged-in" style="display: none;">You must be logged in first.</div>
+        <div id="alert-message" class="not-logged-in" style="display: none;"> Login ! To add a review </div>
         <a href="#" class="btn btn-primary" id="review-el" onclick="review()" style="border-radius: 30px;"><i class="fas fa-comment"></i> Add Review</a>
 {% else %}
         <a href="{% url 'review' %}" class="btn btn-primary add-review-btn"><i class="fas fa-comment"></i> Add Review</a>
@@ -49,11 +49,14 @@
     text-align: center;
     padding: 10px;
     font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     color: #721c24;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 10px;
+   
 }
 
 
@@ -144,11 +147,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* Alert Box Styling */
-.alert {
-    margin: 20px auto;
-    max-width: 600px;
-}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

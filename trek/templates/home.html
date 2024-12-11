@@ -116,6 +116,12 @@
     {% endfor %}
 </div>
 
+<div class="container more-button-container">
+    <a href="{% url 'trip_category_list' %}" class="btn btn-danger">View More</a>
+
+</div>
+
+
 
 <!-- blogs section -->
 <div class="travel-blog-container">
@@ -148,6 +154,40 @@
 
 
 <style>
+
+/* Container Styling for Centering */
+.more-button-container {
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically (optional if needed) */
+    height: 100px; /* Optional: Add height for better centering */
+    margin-top: 20px; /* Add spacing above */
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap Danger Color */
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker Danger Color */
+    transform: scale(1.05); /* Slight enlarge effect */
+}
+
+
+
     /* General Header Section Styling */
     #header {
         background-color: transparent;
@@ -380,18 +420,20 @@
     color: #333;
 }
 
+.blog-content a{
+    text-decoration: none ;
+}
+
 .blog-title {
     font-size: 18px;
     color: black;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
-    font-weight: 500;
     text-decoration: none;
     display: block;
     margin-bottom: 10px;
     line-height: 1.4;
 }
-
 
 
 .blog-author {
