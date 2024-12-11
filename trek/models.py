@@ -222,4 +222,29 @@ class TripBooking(models.Model):
 
 
 
+class Language(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+
+        return self.name 
+
+
+class Guide(models.Model):
+    name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='guide/photo', null=True, blank=True)
+    bio = models.TextField(blank=True, null= True)
+    experience_years = models.PositiveIntegerField(default=1)
+    language_spoken = models.ManyToManyField(Language, related_name='language')
+
+    available_from = models.DateField(default=timezone.now)
+    available_to = models.DateField(default = timezone.now)
+    daily_rate = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    date_joined = models.DateField(default = timezone.now)
+
+    def __str__(self):
+        return f"Guide: {self.name}" 
+
+
 

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Meet Our Guides</h2>
+  
+    
+
+    <div class="row">
+        {% for guide in object_list %}
+        <div class="col-md-4 mb-4">
+            <!-- Card for each guide -->
+            <div class="card guide-card">
+                {% if guide.photo %}
+                    <img class="card-img-top guide-photo" src="{{ guide.photo.url }}" alt="{{ guide.name }}">
+                {% else %}
+                    <img class="card-img-top guide-photo" src="{% static 'images/profile-pic-extra.png' %}" alt="{{ guide.name }}">
+                {% endif %}
+                    <div class="card-body">
+                    <h5 class="card-title">{{ guide.name }}</h5>
+                    <div class="card-text">
+                        <p><i class="fas fa-calendar-check"></i> Spare from: {{ guide.available_from }}</p>
+                        <p><i class="fas fa-calendar-times"></i> Spare to: {{ guide.available_to }}</p>
+                        <a href="{% url 'guide_details' guide.pk %}" class="btn btn-danger">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+
+.row{
+    max-width: 900px;
+    margin-top: 10px;
+    padding: 0 15px;
+}
+
+
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+ 
+}
+
+.guide-card {
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-top: 30px; 
+}
+
+.guide-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
+}
+
+
+.guide-photo {
+    height: 250px;
+    object-fit: cover;  /* Ensures the image covers the area without stretching */
+    border-radius: 10px 10px 0 0;  /* Rounded corners on the top */
+}
+
+/* Card body text */
+.card-body {
+    padding: 20px;
+    height: 36vh;
+}
+
+/* Title of the card */
+.card-title {
+   font-family: 'Courier New', Courier, monospace;
+   font-size: 18px;
+   font-weight: bold;
+   color: black;
+    margin-bottom: 5px;
+}
+
+.card-text i {
+    color: #28a745;  
+}
+
+.card-text p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    color: black;
+    font-weight: 100;
+
+}
+
+.btn-danger{
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: red;
+
+}
+
+.btn-danger:hover{
+    background-color: rgba(255, 0, 0, 0.445);
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .guide-card {
+        width: 100%;
+    }
+
+    .guide-photo {
+        height: 180px;
+    }
+}
+
+</style>
+
+
+
+{% endblock %}

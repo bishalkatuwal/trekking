@@ -4,7 +4,7 @@ from .forms import ContactForm, ReviewForm
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , TripBooking, TripMedia, BlogMedia
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , TripBooking, TripMedia, BlogMedia, Guide, Language
 from django.contrib import messages
 
 
@@ -187,3 +187,25 @@ class MediaListView(ListView):
         return context
 
 
+
+
+class GuideListView(ListView):
+    model = Guide
+    template_name = 'Guide.html'
+    
+
+    def get_context_data(self, *args, **kwargs):
+        context  =super().get_context_data( *args, **kwargs)
+        return context
+
+
+class GuideDetailsView(DetailView):
+    model = Guide
+    template_name = 'Guide_details.html'
+    
+
+    def get_context_data(self, *args, **kwargs):
+        context  =super().get_context_data( *args, **kwargs)
+        travel = get_object_or_404(Guide, id=self.kwargs['pk'])
+        return context
+    

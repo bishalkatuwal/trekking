@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="guide-details">
+    <h2>{{ guide.name }}</h2>
+    
+    <p><strong>Available From:</strong> {{ guide.available_from|date:"F j, Y" }}</p>
+    <p><strong>Available To:</strong> {{ guide.available_to|date:"F j, Y" }}</p>
+    {% if guide.language_spoken.all %}
+        {% for language in guide.language_spoken.all %}
+            {{ language.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    {% else %}
+        Not specified
+    {% endif %}
+    <p><strong>Experience:</strong> {{ guide.experience_years }} years</p>
+
+    <p><strong>Daily Rate:</strong> ${{ guide.daily_rate }}</p>
+    <p><strong>Hourly Rate:</strong> ${{ guide.hourly_rate }}</p>
+    <p><strong>Joined on:</strong> {{ guide.date_joined|date:"F j, Y" }}</p>
+</div>
+
+{% endblock %}
