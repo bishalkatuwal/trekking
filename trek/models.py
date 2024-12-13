@@ -243,6 +243,16 @@ class Guide(models.Model):
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     date_joined = models.DateField(default = timezone.now)
 
+    # social media link
+
+    facebook = models.URLField(max_length=255, blank=True, null=True)
+    twitter = models.URLField(max_length=255, blank=True, null=True)
+    instagram = models.URLField(max_length=255, blank=True, null=True)
+    linkedin = models.URLField(max_length=255, blank=True, null=True)
+    whatsapp = models.URLField(max_length=255, blank=True, null=True)
+
+
+
     def __str__(self):
         return f"Guide: {self.name}" 
 
