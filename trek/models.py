@@ -258,3 +258,41 @@ class Guide(models.Model):
 
 
 
+class Materials(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='materials/image')
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    quantity = models.PositiveIntegerField(default=0)  # To keep track of stock
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Material"
+        verbose_name_plural = "Materials"
+
+    def update_stock(self, quantity):
+        """
+        Custom method to update the stock quantity for an item.
+        """
+        if quantity <= 0:
+            raise ValueError("Quantity must be a positive integer.")
+        self.quantity = quantity
+        self.save()
+
+    def is_in_stock(self):
+        """
+        Check if the item is in stock to determine if it can be added to the cart.
+        """
+        return self.quantity > 0
+
+    def decrease_stock(self, quantity):
+        """
+        Decreases the stock by the given quantity when an item is added to the cart or sold.
+        """
+        if self.quantity >= quantity:
+            self.quantity -= quantity
+            self.save()
+        else:
+            raise ValueError("Not enough stock available.")

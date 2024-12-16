@@ -17,14 +17,15 @@ from.views import ( ContactView ,
                     ReviewView,
                    MediaListView,
                    GuideListView,
-                   GuideDetailsView
+                   GuideDetailsView, 
+                   MaterialsView
 )
 
 
 
 
 urlpatterns = [
-
+    path('materials/', MaterialsView.as_view(), name='materials'),  
     path('guide/<int:pk>/', GuideDetailsView.as_view(), name = 'guide_details'),
     path('guide/', GuideListView.as_view(), name = 'guide_list'),
     path('trip-media/', MediaListView.as_view(), name='image_video'),

@@ -14,6 +14,7 @@ from .models import( Contact,
                     BlogMedia,
                     Guide,
                     Language,
+                    Materials
                     )
 
 
@@ -54,3 +55,4 @@ admin.site.register(TripMedia)
 admin.site.register(BlogMedia)
 admin.site.register(Guide, GuideAdmin)
 admin.site.register(Language, LanguageAdmin)
+admin.site.register(Materials)

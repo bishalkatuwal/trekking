@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container-sm">
+    <h5 class="trip-title">Explore the Shop</h5>
+    </div>
+
+    <div class="product-list">
+        {% for materials in object_list %}
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{ materials.image.url }}" alt="{{ materials.title }}">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">{{ materials.title }}</h2>
+                <p class="product-price">${{ materials.price }}</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <!-- Trigger button for modal -->
+                    <button class="btn details" data-toggle="modal" data-target="#productModal" data-title="{{ materials.title }}" data-price="{{ materials.price }}" data-description="{{ materials.description }}" data-image="{{ materials.image.url }}">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    
+    <!-- Modal Structure -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Product Image -->
+                    <img id="modal-image" src="{{ materials.image.url }}" alt="Product Image" class="img-fluid mb-3">
+                
+                    <!-- Product Title -->
+                    <h2 id="modal-title">
+                        <i class="fas fa-box"></i> <!-- Product icon -->
+                        {{ materials.title }}
+                    </h2>
+                
+                    <!-- Product Price -->
+                    <p id="modal-price">
+                        <i class="fas fa-dollar-sign"></i> <!-- Dollar icon -->
+                        ${{ materials.price }}
+                    </p>
+                
+                    <!-- Product Description -->
+                    <p id="modal-description">
+                       
+                        {{ materials.description|linebreaks|safe}}
+                    </p>
+                
+                    <!-- Product Quantity -->
+                    <p id="modal-quantity">
+                        <i class="fas fa-cogs"></i> <!-- Quantity icon -->
+                        Available: {{ materials.quantity }}
+                    </p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+<style>
+    /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for all products */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+/* Individual product card */
+.product-card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on product card */
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Product image */
+.product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Product details */
+.product-details {
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+/* Action buttons */
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 30px;
+}
+
+.add-to-cart {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+.details {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.details:hover {
+    background-color: #0056b3;
+}
+
+/* FontAwesome icons style */
+.fas {
+    margin-right: 8px;
+}
+
+.containre-sm{
+    text-align: center;
+    justify-content: center;
+}
+
+h5{
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Optional: Add some custom styling for the modal image */
+#modal-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px; /* Add spacing between image and title */
+}
+
+/* Styling for the modal title */
+#modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+#modal-title i {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #007bff; /* Blue color for the icon */
+}
+
+/* Styling for the modal price */
+#modal-price {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: black; /* Green color for price */
+}
+
+#modal-price i {
+    font-size: 22px;
+    margin-right: 10px;
+    color: #007bff; /* Blue color for the icon */
+}
+
+/* Styling for the modal description */
+#modal-description {
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+#modal-description i {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #007bff; /* Blue color for the icon */
+}
+
+/* Styling for the modal quantity */
+#modal-quantity {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: black; /* Yellow color for quantity */
+}
+
+#modal-quantity i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #007bff; /* Blue color for the icon */
+}
+
+/* Optional: Add a nice background to the modal */
+.modal-body {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Optional: Add some spacing to the bottom of the modal */
+.modal-footer {
+    padding: 15px 20px;
+}
+
+
+</style>
+
+
+
+<script>
+    // Listen for when a "Details" button is clicked
+    $('#productModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var title = button.data('title'); // Extract title data
+        var price = button.data('price'); // Extract price data
+        var description = button.data('description'); // Extract description data
+        var image = button.data('image'); // Extract image data
+
+        // Update the modal's content
+        var modal = $(this);
+        modal.find('#modal-title').text(title);
+        modal.find('#modal-price').text('$' + price);
+        modal.find('#modal-description').text(description);
+        modal.find('#modal-image').attr('src', image);
+    });
+</script>
+
+
+{% endblock %}
