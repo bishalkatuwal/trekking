@@ -296,3 +296,16 @@ class Materials(models.Model):
             self.save()
         else:
             raise ValueError("Not enough stock available.")
+
+
+
+
+
+class AddToCart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    materials = models.ForeignKey(Materials, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)  # Add this line to track the quantity
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s cart - {self.materials.title} (x{self.quantity})"

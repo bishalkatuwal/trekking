@@ -8,5 +8,7 @@ urlpatterns = [
     path('profile/edit', ProfileEditView.as_view(), name='profile-edit'),
     path('booking-list/<int:trip_id>/', BookingTripView.as_view(), name='booking_trip'),
     path('remove-from-list/<int:item_id>/', RemoveFromListView.as_view(), name='remove_from_list'),
+   
+
 
 ]

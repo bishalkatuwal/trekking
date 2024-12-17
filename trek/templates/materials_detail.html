@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Container for centering the card -->
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="material-card">
+        <!-- Product Image -->
+        <img src="{{ materials.image.url }}" class="material-card-img-top" alt="Product image">
+        <div class="material-card-body">
+          <!-- Product Title -->
+          <h5 class="material-card-title">
+            <i class="fas fa-box"></i> {{ materials.title }}
+          </h5>
+
+          <!-- Product Description -->
+          <p class="material-card-text">{{ materials.description }}</p>
+
+          <!-- Price with Icon -->
+          <p class="material-card-price">
+            <i class="fas fa-dollar-sign"></i>Price: ${{ materials.price }}
+          </p>
+
+          <!-- Available Quantity with Icon -->
+          <p class="material-card-quantity">
+            <i class="fas fa-cogs"></i> Available Quantity: {{ materials.quantity }}
+          </p>
+
+          <!-- Buy Now Button with Cart Icon -->
+          <a href="#" class="btn btn-custom">
+            <i class="fas fa-shopping-cart"></i> Buy Now
+          </a>
+
+          <a href="#" class="btn btn-custom">
+            <i class="fas fa-key"></i> Rent
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+    /* Custom Styles for the Material Card */
+.material-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.material-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.material-card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+  width: 100%;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.material-card-body {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.material-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.material-card-title i {
+  margin-right: 8px; /* Add space between icon and text */
+  color: #007bff; /* Blue color for icons */
+}
+
+.material-card-text {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.material-card-price {
+  font-size: 1.1rem;
+  color: #28a745; /* Green for the price */
+  font-weight: bold;
+}
+
+.material-card-price i {
+  margin-right: 8px;
+}
+
+.material-card-quantity {
+  font-size: 1rem;
+  color: #dc3545; /* Red for the quantity */
+}
+
+.material-card-quantity i {
+  margin-right: 8px;
+}
+
+.btn-custom {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+
+.btn-custom i {
+  margin-right: 8px; /* Space between the cart icon and text */
+}
+
+</style>
+
+{% endblock %}

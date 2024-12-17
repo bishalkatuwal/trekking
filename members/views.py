@@ -4,7 +4,7 @@ from django.views.generic import CreateView, DetailView,UpdateView, ListView
 from .forms import SignupForm
 from django.urls import reverse_lazy
 from .models import Profile
-from trek.models import TripBooking, Trip
+from trek.models import TripBooking, Trip, Materials, AddToCart
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.contrib import messages
@@ -17,13 +17,13 @@ class RegisterView(generic.CreateView):
 
 
 
-
 class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'profile/profile_detail.html'
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
+        # This ensures that the logged-in user has a profile, or creates one if it doesn't exist
         profile, created = Profile.objects.get_or_create(user=self.request.user)
         return profile
 
@@ -31,6 +31,7 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         # Add the trip booking list for the logged-in user to the context
         context['tripbooking_list'] = TripBooking.objects.filter(user=self.request.user)
+        context['add_to_cart'] = Materials.objects.filter(user=self.request.user)
         return context
 
 
@@ -87,4 +88,5 @@ class RemoveFromListView(View):
         tripbooking_item = get_object_or_404(TripBooking, id=item_id)
         tripbooking_item.delete()
         return redirect('profile-detail')
+
 

@@ -4,7 +4,7 @@ from .forms import ContactForm, ReviewForm
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , TripBooking, TripMedia, BlogMedia, Guide, Language, Materials
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language
 from django.contrib import messages
 
 
@@ -219,3 +219,54 @@ class MaterialsView(ListView):
         return context
 
 
+
+class MaterialsDetailView(DetailView):
+    model = Materials
+    template_name = 'materials_detail.html'
+
+
+    def get_context_data( self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        materials = get_object_or_404(Materials, id=self.kwargs['pk'])
+
+        return context
+
+
+
+
+
+
+class AddtoCartView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        materials = get_object_or_404(Materials, id=self.kwargs['materials_id'])
+
+        if AddToCart.objects.filter(user=request.user, materials=materials).exists():
+            messages.info(request, "The item has already been added to your cart!")
+        else:
+            AddToCart.objects.create(user=request.user, materials=materials)
+            messages.success(request, "This item has been added to your cart!")
+
+        # Redirect to the user's profile page
+        return redirect('cart-list-view')
+
+
+
+
+
+
+
+class CartListView(ListView, LoginRequiredMixin):
+    model = AddToCart
+    template_name = 'add-to-cart.html'
+    context_object_name = 'AddToCart_list'
+
+    def get_queryset(self):
+        # Filter cart items for the logged-in user
+        return AddToCart.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # You can add additional information, such as the total price of items in the cart
+        total_price = sum(item.materials.price for item in context['AddToCart_list'])
+        context['total_price'] = total_price
+        return context

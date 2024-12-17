@@ -14,7 +14,8 @@ from .models import( Contact,
                     BlogMedia,
                     Guide,
                     Language,
-                    Materials
+                    Materials,
+                    AddToCart
                     )
 
 
@@ -56,3 +57,4 @@ admin.site.register(BlogMedia)
 admin.site.register(Guide, GuideAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Materials)
+admin.site.register(AddToCart)
