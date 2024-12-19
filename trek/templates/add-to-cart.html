@@ -55,6 +55,25 @@
         .cart-item p.quantity {
             font-size: 0.9rem;
         }
+           
+        .cart-materials{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+           
+        }
+        .cart-materials button{
+            background-color: transparent;
+            color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+        }
+        
         .cart-total {
             margin-top: 40px;
             font-size: 1.5rem;
@@ -72,40 +91,78 @@
             color: #dc3545;
             font-size: 1.2rem;
         }
+        .btn-primary{
+            margin-top:20px;
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 30px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+
+
+        }
+        .not-logged-in {
+            text-align: center;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+
     </style>
 </head>
 <body>
+    
+    <div class="container">
+                    <h2 class="text-center mb-4">Your Cart</h2>
 
-<div class="container">
-    <h2 class="text-center mb-4">Your Cart</h2>
+                    <!-- Display messages (Success/Error) -->
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} d-flex align-items-center">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
 
-    <!-- Display messages (Success/Error) -->
-    <div class="messages">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} d-flex align-items-center">
-                <i class="fas fa-info-circle mr-2"></i>
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
+                    <!-- Cart Items -->
+                    <div class="cart-items">
 
-    <!-- Cart Items -->
-    <div class="cart-items">
-        {% for item in AddToCart_list %}
-            <div class="cart-item">
-                <img src="{{ item.materials.image.url }}" alt="{{ item.materials.title }}">
-                <div>
-                    <h3>{{ item.materials.title }}</h3>
-                    <p class="price">${{ item.materials.price }}</p>
-                    <p class="quantity"><i class="fas fa-cogs"></i> Quantity: {{ item.quantity }}</p>
+                        {% for item in AddToCart_list %}  
+
+                            <div class="cart-item">
+                                    <img src="{{ item.materials.image.url }}" alt="{{ item.materials.title }}">
+                                    <div class="cart-materials">
+                                        <div>
+                                            <h3>{{ item.materials.title }}</h3>
+                                            <p class="price">${{ item.materials.price }}</p>
+                                            <p class="quantity"><i class="fas fa-cogs"></i> Quantity: {{ item.quantity }}</p>
+                                        </div>  
+                                        <form action="{% url 'remove-cart' item.materials.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn add-to-cart">
+                                                <i class="fas fa-trash"></i> 
+                                            </button>
+                                        </form>
+                                    </div>    
+                            </div>
+                        {% empty %}
+                            <p class="empty-cart"><i class="fas fa-shopping-cart"></i> Your cart is empty!</p>
+                        {% endfor %}          
+                        
+                    </div>
                 </div>
-            </div>
-        {% empty %}
-            <p class="empty-cart"><i class="fas fa-shopping-cart"></i> Your cart is empty!</p>
-        {% endfor %}
-    </div>
-</div>
 
+                <a href="{% url 'materials' %}" class="btn btn-primary">Back To Shop</a>            
 <!-- Bootstrap JS (for responsive and modal components, etc.) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

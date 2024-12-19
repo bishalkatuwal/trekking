@@ -31,7 +31,7 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         # Add the trip booking list for the logged-in user to the context
         context['tripbooking_list'] = TripBooking.objects.filter(user=self.request.user)
-        context['add_to_cart'] = Materials.objects.filter(user=self.request.user)
+
         return context
 
 

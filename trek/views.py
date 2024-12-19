@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect
-from django.views.generic import CreateView, ListView, DetailView
+from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect, HttpResponseRedirect
+from django.views.generic import CreateView, ListView, DetailView, DeleteView
 from .forms import ContactForm, ReviewForm
 from django.urls import reverse_lazy
 from django.views import View
@@ -270,3 +270,24 @@ class CartListView(ListView, LoginRequiredMixin):
         total_price = sum(item.materials.price for item in context['AddToCart_list'])
         context['total_price'] = total_price
         return context
+
+
+class RemoveCartView(View):
+    def post(self, request, materials_id):
+        # Fetch the AddToCart item associated with the user and the materials_id
+        cart_item = get_object_or_404(AddToCart, materials__id=materials_id, user=request.user)
+        
+        # Delete the item from the cart
+        cart_item.delete()
+        
+        # Optionally, add a success message
+        messages.success(request, "Item removed from your cart.")
+
+        # Redirect the user to a success page (you can adjust this to your desired page)
+        return HttpResponseRedirect(reverse_lazy('cart-list-view'))
+       
+
+
+
+
+    

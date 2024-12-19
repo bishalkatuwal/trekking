@@ -21,14 +21,17 @@ from.views import ( ContactView ,
                    MaterialsView,
                    MaterialsDetailView,
                    AddtoCartView,
-                   CartListView
+                   CartListView,
+                   RemoveCartView,
 )
 
 
 
 
 urlpatterns = [
-    path('ad-to-cart/', CartListView.as_view(), name = 'cart-list-view'),
+    
+    path('add-to-cart/', CartListView.as_view(), name = 'cart-list-view'),
+    path('remove-cart/<int:materials_id>/', RemoveCartView.as_view(), name='remove-cart'),
     path('add-to-cart/<int:materials_id>/', AddtoCartView.as_view(), name='add-to-cart'),
     path('materials/<int:pk>/', MaterialsDetailView.as_view(), name='materials_detail'),
     path('materials/', MaterialsView.as_view(), name='materials'),  
