@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+
+
+
 <div class="container mt-4">
     <h1>{{ trip_category.title }}</h1>
     <p>{{ trip_category.summary }}</p>
@@ -9,6 +13,15 @@
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
+
+                    {% if trip.cover_img %}
+                        <img src="{{ trip.cover_img.url }}" class="card-img-top" alt="{{trip.title}}">
+                    {% else %}
+                        <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="{{ trip.title}}">
+                    {% endif %}
+
+
+
                     <h5 class="card-title">{{ trip.title }}</h5>
                     <div>
                         <i class="fa fa-dollar-sign"></i>
@@ -70,7 +83,12 @@
 .card-body {
     padding: 20px;
 }
-
+.card-img-top {
+    height: 200px;  /* Set the height */
+    object-fit: cover;  /* Ensure the image covers the area */
+    border-top-left-radius: 8px;  /* Rounded top left corners */
+    border-top-right-radius: 8px;  /* Rounded top right corners */
+}
 /* Title Styling */
 .card-title {
     font-size: 1.25rem;

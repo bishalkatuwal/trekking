@@ -1,127 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            margin-top: 50px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-        .messages {
-            margin-bottom: 20px;
-        }
-        .cart-items {
-            margin-top: 30px;
-        }
-        .cart-item {
-            border-bottom: 1px solid #f1f1f1;
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-        }
-        .cart-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 20px;
-        }
-        .cart-item h3 {
-            font-size: 1.2rem;
-            color: #343a40;
-        }
-        .cart-item p {
-            margin: 0;
-            color: #6c757d;
-        }
-        .cart-item p.price {
-            font-weight: bold;
-            color: #28a745;
-        }
-        .cart-item p.quantity {
-            font-size: 0.9rem;
-        }
-           
-        .cart-materials{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-           
-        }
-        .cart-materials button{
-            background-color: transparent;
-            color: #dc3545;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-
-        }
-        
-        .cart-total {
-            margin-top: 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: right;
-        }
-        .alert {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .empty-cart {
-            text-align: center;
-            color: #dc3545;
-            font-size: 1.2rem;
-        }
-        .btn-primary{
-            margin-top:20px;
-            display: block;
-            width: 100%;
-            max-width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 30px;
-            border: none;
-            background-color: #007bff;
-            color: #ffffff;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
+{% extends 'base.html' %}
+{% block content %}
 
 
-
-        }
-        .not-logged-in {
-            text-align: center;
-            padding: 15px;
-            font-size: 16px;
-        }
-
-
-    </style>
-</head>
-<body>
-    
     <div class="container">
+{% if user.is_authenticated %}   
                     <h2 class="text-center mb-4">Your Cart</h2>
 
                     <!-- Display messages (Success/Error) -->
@@ -162,11 +44,127 @@
                     </div>
                 </div>
 
-                <a href="{% url 'materials' %}" class="btn btn-primary">Back To Shop</a>            
-<!-- Bootstrap JS (for responsive and modal components, etc.) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <a href="{% url 'materials' %}" class="btn btn-primary">Back To Shop</a>  
+                
+                
+{% else %}
 
-</body>
-</html>
+        <div class="alert alert-primary not-logged-in" role="alert">
+            You must be logged in
+        </div>
+
+{% endif %}
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+    .container {
+        margin-top: 50px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+    .messages {
+        margin-bottom: 20px;
+    }
+    .cart-items {
+        margin-top: 30px;
+    }
+    .cart-item {
+        border-bottom: 1px solid #f1f1f1;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+    }
+    .cart-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 20px;
+    }
+    .cart-item h3 {
+        font-size: 1.2rem;
+        color: #343a40;
+    }
+    .cart-item p {
+        margin: 0;
+        color: #6c757d;
+    }
+    .cart-item p.price {
+        font-weight: bold;
+        color: #28a745;
+    }
+    .cart-item p.quantity {
+        font-size: 0.9rem;
+    }
+       
+    .cart-materials{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+       
+    }
+    .cart-materials button{
+        background-color: transparent;
+        color: #dc3545;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+    }
+    
+    .cart-total {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: right;
+    }
+    .alert {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .empty-cart {
+        text-align: center;
+        color: #dc3545;
+        font-size: 1.2rem;
+    }
+    .btn-primary{
+        margin-top:20px;
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 30px;
+        border: none;
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+
+
+    }
+    .not-logged-in {
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+
+</style>
+
+
+{% endblock %}

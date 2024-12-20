@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="profile-container">
@@ -11,7 +11,7 @@
         {% if user.profile.profile_pic %}
             <img src="{{ user.profile.profile_pic.url }}" class="profile-pic" alt="Profile Picture">
         {% else %}
-            <img src="https://www.freeiconspng.com/thumbs/profile-icon-png/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" class="profile-pic" alt="Default Profile Picture">
+            <img src="{% static 'images/profile-pic-extra.png' %}" class="profile-pic" alt="Default Profile Picture">
         {% endif %}
     </div>
 

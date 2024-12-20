@@ -46,24 +46,13 @@
 
 <!-- Styles -->
 <style>
-    /* General Reset */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Roboto', sans-serif;
-        background: url('path/to/trekking-background.jpg') no-repeat center center fixed;
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-    }
-
-    /* Container */
+    /* Container to center the login form */
     .login-container {
-        width: 100%;
-        max-width: 400px;
-        margin: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+        margin: 0;
     }
 
     /* Card */
@@ -73,6 +62,8 @@
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         text-align: center;
+        width: 100%;
+        max-width: 400px; /* Limit the width */
     }
 
     /* Titles */

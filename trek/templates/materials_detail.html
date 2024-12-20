@@ -28,13 +28,14 @@
           </p>
 
           <!-- Buy Now Button with Cart Icon -->
-          <a href="#" class="btn btn-custom">
-            <i class="fas fa-shopping-cart"></i> Buy Now
-          </a>
-
-          <a href="#" class="btn btn-custom">
-            <i class="fas fa-key"></i> Rent
-          </a>
+          <div class="btn-area">
+            <a href="#" class="btn btn-custom">
+              <i class="fas fa-shopping-cart"></i> Buy Now
+            </a>
+            <a href="#" class="btn btn-custom">
+              <i class="fas fa-key"></i> Rent
+            </a>
+          </div>  
         </div>
       </div>
     </div>
@@ -70,8 +71,9 @@
 
 .material-card-title {
   font-size: 1.25rem;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
-  color: #333;
+  color: black;
 }
 
 .material-card-title i {
@@ -81,13 +83,15 @@
 
 .material-card-text {
   font-size: 0.95rem;
-  color: #444;
+  font-family: 'Courier New', Courier, monospace;
+  color:  black;
   margin-bottom: 15px;
 }
 
 .material-card-price {
   font-size: 1.1rem;
-  color: #28a745; /* Green for the price */
+  font-family: 'Courier New', Courier, monospace;
+  color: #007bff; /* Green for the price */
   font-weight: bold;
 }
 
@@ -97,18 +101,24 @@
 
 .material-card-quantity {
   font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
   color: #dc3545; /* Red for the quantity */
 }
 
 .material-card-quantity i {
   margin-right: 8px;
 }
-
+.btn-area{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  
+}
 .btn-custom {
   background-color: #007bff;
   color: white;
   padding: 10px 15px;
-  font-size: 1rem;
+  font-size: 13px;
   border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
 }
