@@ -172,6 +172,8 @@ class TripDetailView(DetailView):
         trip = self.object  # Get the current trip instance
         media = TripMedia.objects.filter(trip=trip)  # Get related media
         context['media'] = media  # Add media to context
+        itinerary = trip.itinerary.all()
+        context['itinerary'] = itinerary 
         return context
 
 

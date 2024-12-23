@@ -139,6 +139,25 @@ class Trip(models.Model):
 
 
 
+
+
+class Itinerary(models.Model):
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='itinerary')
+    title = models.CharField(max_length=100)  # Title of the day in the itinerary
+    day_no = models.PositiveIntegerField()  # Day number in the trek
+    distance = models.DecimalField(max_digits=5, decimal_places=2, help_text="Distance in kilometers")  # Distance of the day's trek
+    trek_duration = models.DecimalField(max_digits=5, decimal_places=2, help_text="Duration in hours")  # Duration of the trek in hours
+    highest_altitude = models.DecimalField(max_digits=7, decimal_places=2, help_text="Maximum altitude in meters")  # Max altitude for the day
+    flight_hours = models.DecimalField(max_digits=5, decimal_places=2, help_text="Flight hours if applicable", blank=True, null=True)  # Flight hours (if applicable)
+    summary = FroalaField()  # Rich text field for detailed description
+
+    class Meta:
+        ordering = ['day_no']  # Ordering by day_no
+
+    def __str__(self):
+        return f"Day {self.day_no}: {self.title} - {self.trip.title}"
+
+
 class TripMedia(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='media')
     image = models.ImageField(upload_to='trip_images/', null=True, blank=True)
@@ -309,3 +328,6 @@ class AddToCart(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s cart - {self.materials.title} (x{self.quantity})"
+
+
+

@@ -1,128 +1,90 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container mt-4">
-    <h1>{{ trip.title }}</h1>
-    <p><i class="fa fa-map-marker-alt"></i> <strong>Destination:</strong> {{ trip.destination }}</p>
-    <p><i class="fa fa-calendar-day"></i> <strong>Start Date:</strong> {{ trip.start_date }}</p>
-    <p><i class="fa fa-calendar-alt"></i> <strong>End Date:</strong> {{ trip.end_date }}</p>
-    <p><i class="fa fa-dollar-sign"></i> <strong>Price:</strong> ${{ trip.price }}</p>
-    <p><i class="fa fa-users"></i> <strong>Available Seats:</strong> {{ trip.available_seats }}</p>
-    <hr>
-    <p>{{ trip.description|safe }}</p>
-</div>
-
-<div class="container">
-    <h2 class="gallery-title">Gallery of Our Trips And Tours</h2>
-</div>
-
-<div class="media-container">
-    {% for item in media %}
-        <div class="media-item">
-            <img src="{{ item.image.url }}" alt="{{ item.caption }}" class="media-image">
-            
-            {% if item.video %}
-                <video class="media-video" controls>
-                    <source src="{{ item.video.url }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            {% endif %}
-            
-            {% if item.caption %}
-                <p class="media-caption">{{ item.caption }}</p>
-            {% endif %}
-        </div>
-    {% endfor %}
-</div>
 
 
 
 
-<style>
-/* images and videos */
+            {% block css %}
+                <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+            {% endblock %}  
 
-.container {
-    text-align: center;
-    margin-bottom: 20px;
-}
+            <div class="container mt-4">
+                <h1>{{ trip.title }}</h1>
+                <p><i class="fa fa-map-marker-alt"></i> <strong>Destination:</strong> {{ trip.destination }}</p>
+                <p><i class="fa fa-calendar-day"></i> <strong>Start Date:</strong> {{ trip.start_date }}</p>
+                <p><i class="fa fa-calendar-alt"></i> <strong>End Date:</strong> {{ trip.end_date }}</p>
+                <p><i class="fa fa-dollar-sign"></i> <strong>Price:</strong> ${{ trip.price }}</p>
+                <p><i class="fa fa-users"></i> <strong>Available Seats:</strong> {{ trip.available_seats }}</p>
+                <hr>
+                <p>{{ trip.description|safe }}</p>
+            </div>
 
-.gallery-title {
-    font-weight: bold;
-    color: black;
-    font-size: 1.5rem;
-}
+            <div class="container">
+                <h2 class="gallery-title">Gallery of Our Trips And Tours</h2>
+            </div>
 
-.media-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.media-item {
-    flex: 1 1 calc(33% - 20px); /* Adjust for responsiveness */
-    max-width: 300px;
-    text-align: center;
-}
-
-.media-image, .media-video {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.media-caption {
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 10px;
-}
-
+            <div class="media-container">
+                {% for item in media %}
+                    <div class="media-item">
+                        <img src="{{ item.image.url }}" alt="{{ item.caption }}" class="media-image">
+                        
+                        {% if item.video %}
+                            <video class="media-video" controls>
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% endif %}
+                        
+                        {% if item.caption %}
+                            <p class="media-caption">{{ item.caption }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
 
 
-/* Container styling for proper alignment */
-.container {
-    max-width: 900px;
-    margin-top: 50px;
-}
 
-/* Styling for icons */
-.fa {
-    color: #007bff;  /* Blue color for icons */
-    margin-right: 10px;  /* Add space between icon and text */
-}
+            <!-- itenary  -->
+            {% if itinerary %}
+            <div class="itinerary">
+                <h1 class="itinerary-title">Trip Itinerary</h1>
+                {% for day in itinerary %}
+                    <div class="itinerary-day">
+                        <h4 class="day-title">Day {{ day.day_no }}: {{ day.title }}</h4>
+                        <div class="itinerary-container">
+                                {% if day.flight_hours %}
+                                    <p class="itinerary-info">
+                                        <i class="fa fa-plane"></i>
+                                        <strong>Flight Hours:</strong> {{ day.flight_hours }} min
+                                    </p>
+                                {% endif %}
+                
+                                <p class="itinerary-info">
+                                    <i class="fa fa-map-marker-alt"></i>
+                                    <strong>Trek Distance:</strong> {{ day.distance }} km
+                                </p>
+                
+                                <p class="itinerary-info">
+                                    <i class="fa fa-mountain"></i>
+                                    <strong>Highest Altitude:</strong> {{ day.highest_altitude }} m
+                                </p>
+                
+                                <p class="itinerary-info">
+                                    <i class="fa fa-clock"></i>
+                                    <strong>Trek Duration:</strong> {{ day.trek_duration }} hrs
+                                </p>
+                        </div>
+                        <div class="day-summary">
+                            <p>{{ day.summary|safe }}</p>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                {% endfor %}
+            </div>
+        {% endif %}
+        
 
-/* Styling for headings and text */
-h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-}
-
-/* Paragraph styling */
-p {
-    font-size: 1.1rem;
-    color: #555;
-}
-
-/* Bold label styling */
-strong {
-    font-weight: 600;
-    color: #333;
-}
-
-/* Horizontal line styling */
-hr {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-}
-
-/* Overall layout for a neat look */
-.container p {
-    margin-bottom: 15px;
-}
-
-
-</style>
 
 
 {% endblock %}

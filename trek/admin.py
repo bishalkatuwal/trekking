@@ -15,7 +15,8 @@ from .models import( Contact,
                     Guide,
                     Language,
                     Materials,
-                    AddToCart
+                    AddToCart,
+                    Itinerary
                     )
 
 
@@ -58,3 +59,6 @@ admin.site.register(Guide, GuideAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Materials)
 admin.site.register(AddToCart)
+admin.site.register(Itinerary)
+
+

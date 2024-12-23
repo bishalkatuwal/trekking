@@ -1,25 +1,37 @@
-{% extends 'base.html'%}
-
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 
-<div class="container">
-        
-    <h5>Any Querise ? Let us Know </h5>
+                    {% block css %}
+                        <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+                    {% endblock %}
 
-    <br>
-    <hr>
-    
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
+                    
+                    <div class="container">
+                        <h5>Have Any Queries? Let Us Know</h5>
+                        <hr>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div>
+                                <label for="name">Name</label>
+                                {{ form.name }}
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div>
+                                <label for="message">Message</label>
+                                {{ form.message }}
+                            </div>
+                            <button class="btn btn-info" type="submit">Submit</button>
+                        </form>
+                    </div>
 
-     <button class="btn btn-info" type="submit">Submit</button>
 
-    </div>
 
-</div>
 
 
 {% endblock %}
