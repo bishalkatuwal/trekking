@@ -1,116 +1,27 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="review-form-container">
-    {% if user.is_authenticated %}
-        <h2 class="form-heading">Submit Your Review</h2>
-        <hr>
-        <form method="POST" enctype="multipart/form-data" class="review-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn-submit" type="submit">Submit</button>
-        </form>
-    {% else %}
-        <div class="alert alert-primary not-logged-in" role="alert">
-            You must be logged in to leave a review.
+
+        {% block css %}
+            <link rel="stylesheet" href="{% static 'css/review.css' %}">
+        {% endblock%}
+
+        <div class="review-form-container">
+            {% if user.is_authenticated %}
+                <h2 class="form-heading">Submit Your Review</h2>
+                <hr>
+                <form method="POST" enctype="multipart/form-data" class="review-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn-submit" type="submit">Submit</button>
+                </form>
+            {% else %}
+                <div class="alert alert-primary not-logged-in" role="alert">
+                    You must be logged in to leave a review.
+                </div>
+            {% endif %}
         </div>
-    {% endif %}
-</div>
 
-<style>
-/* General Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
 
-/* Review Form Container */
-.review-form-container {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* Form Heading */
-.form-heading {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Review Form */
-.review-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.review-form input, 
-.review-form textarea, 
-.review-form select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.review-form input:focus, 
-.review-form textarea:focus, 
-.review-form select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Submit Button */
-.btn-submit {
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-    background: linear-gradient(to right, #007bff, #0056b3);
-    border: none;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn-submit:hover {
-    background: linear-gradient(to right, #0056b3, #003d80);
-    transform: translateY(-3px);
-}
-
-/* Alert Box */
-.not-logged-in {
-    text-align: center;
-    padding: 15px;
-    font-size: 16px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .review-form-container {
-        margin: 20px 10px;
-        padding: 15px;
-    }
-
-    .form-heading {
-        font-size: 20px;
-    }
-
-    .btn-submit {
-        font-size: 16px;
-    }
-}
-</style>
 {% endblock %}

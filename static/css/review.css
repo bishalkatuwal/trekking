@@ -1,0 +1,198 @@
+/* .................................................................................................. */
+/*                                            REVIEW FORM                                              */
+/* .................................................................................................... */
+
+
+.review-form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Heading */
+.form-heading {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Review Form */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-form input, 
+.review-form textarea, 
+.review-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.review-form input:focus, 
+.review-form textarea:focus, 
+.review-form select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+.btn-submit {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to right, #0056b3, #003d80);
+    transform: translateY(-3px);
+}
+
+/* Alert Box */
+.not-logged-in {
+    text-align: center;
+    padding: 15px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-form-container {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    .form-heading {
+        font-size: 20px;
+    }
+
+    .btn-submit {
+        font-size: 16px;
+    }
+}
+
+
+/* ....................................................................................................*/
+/*                                  REVIEW                                                              */
+/* ....................................................................................................*/
+
+.not-logged-in {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 30px;
+    margin-top: 10px;
+   
+}
+
+.review-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Individual Review Card */
+.review-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+}
+
+.user-info h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Body Section */
+.review-body {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Add Review Button */
+.add-review-btn {
+    display: inline-block;
+    margin: 20px auto;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.add-review-btn:hover {
+    background: linear-gradient(to right, #0056b3, #003d80);
+    transform: translateY(-3px);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-card {
+        padding: 15px;
+    }
+
+    .add-review-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

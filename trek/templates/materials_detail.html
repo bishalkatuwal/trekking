@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<!-- Container for centering the card -->
+
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/materials.css' %}">
+{% endblock %}
+
+
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-4">
@@ -43,95 +50,5 @@
 </div>
 
 
-<style>
-    /* Custom Styles for the Material Card */
-.material-card {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.material-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-}
-
-.material-card-img-top {
-  max-height: 200px;
-  object-fit: cover;
-  width: 100%;
-  border-bottom: 2px solid #f1f1f1;
-}
-
-.material-card-body {
-  padding: 20px;
-  background-color: #fff;
-}
-
-.material-card-title {
-  font-size: 1.25rem;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 600;
-  color: black;
-}
-
-.material-card-title i {
-  margin-right: 8px; /* Add space between icon and text */
-  color: #007bff; /* Blue color for icons */
-}
-
-.material-card-text {
-  font-size: 0.95rem;
-  font-family: 'Courier New', Courier, monospace;
-  color:  black;
-  margin-bottom: 15px;
-}
-
-.material-card-price {
-  font-size: 1.1rem;
-  font-family: 'Courier New', Courier, monospace;
-  color: #007bff; /* Green for the price */
-  font-weight: bold;
-}
-
-.material-card-price i {
-  margin-right: 8px;
-}
-
-.material-card-quantity {
-  font-size: 1rem;
-  font-family: 'Courier New', Courier, monospace;
-  color: #dc3545; /* Red for the quantity */
-}
-
-.material-card-quantity i {
-  margin-right: 8px;
-}
-.btn-area{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  
-}
-.btn-custom {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.btn-custom:hover {
-  background-color: #0056b3;
-  text-decoration: none;
-}
-
-.btn-custom i {
-  margin-right: 8px; /* Space between the cart icon and text */
-}
-
-</style>
 
 {% endblock %}

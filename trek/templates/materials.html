@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/materials.css' %}">
+{% endblock %}
+
 <div class="container-sm">
     <h5 class="trip-title">Explore the Shop</h5>
 </div>
@@ -34,139 +40,4 @@
     {% endfor %}
 </div>
 
-<!-- Styles -->
-<style>
-    /* General Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* Container for all products */
-    .product-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 20px;
-    }
-
-    /* Individual product card */
-    .product-card {
-        width: calc(20% - 20px); /* Set the width to 20% for 5 cards per row */
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 10px; /* Space between cards */
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    /* Hover effect on product card */
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
-
-    /* Product image */
-    .product-image img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    /* Product details */
-    .product-details {
-        padding: 20px;
-    }
-
-    .product-title {
-        font-size: 18px;
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: bold;
-        color: black;
-        margin-bottom: 10px;
-    }
-
-    .product-price {
-        font-size: 16px;
-        font-family: 'Courier New', Courier, monospace;
-        color: #007BFF;
-        margin-bottom: 10px;
-    }
-
-    /* Action buttons */
-    .product-actions {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .btn {
-        padding: 8px 12px;
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border-radius: 30px;
-    }
-
-    .add-to-cart {
-        background-color: #28a745;
-        color: #fff;
-        font-size: 12px;
-    }
-
-    .add-to-cart:hover {
-        background-color: #218838;
-    }
-
-    .details {
-        background-color: #007BFF;
-        color: #fff;
-        font-size: 12px;
-    }
-
-    .details:hover {
-        background-color: #0056b3;
-    }
-
-    /* FontAwesome icons style */
-    .fas {
-        margin-right: 8px;
-    }
-
-    .container-sm {
-        text-align: center;
-        justify-content: center;
-    }
-
-    h5 {
-        text-align: center;
-        justify-content: center;
-        margin-bottom: 50px;
-        margin-top: 50px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 50px;
-        font-weight: bold;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-        .product-card {
-            width: calc(33.33% - 20px); /* 3 cards per row on medium screens */
-        }
-    }
-
-    @media (max-width: 768px) {
-        .product-card {
-            width: calc(50% - 20px); /* 2 cards per row on smaller screens */
-        }
-    }
-
-    @media (max-width: 480px) {
-        .product-card {
-            width: 100%; /* 1 card per row on mobile */
-        }
-    }
-</style>
 {% endblock %}
