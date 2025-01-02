@@ -15,7 +15,7 @@ from django.contrib import messages
 
 class HomeView(ListView):
     model = TravelInfo  # This is the model you're displaying in the homepage
-    template_name = 'home.html'
+    template_name = 'home/home.html'
     context_object_name = 'travel_info'
    
 
@@ -37,7 +37,7 @@ class HomeView(ListView):
 class ContactView(CreateView):
     model = Contact
     form_class = ContactForm
-    template_name = 'contact.html'
+    template_name = 'contacts/contact.html'
     success_url = reverse_lazy('home')
 
 
@@ -45,7 +45,7 @@ class ContactView(CreateView):
 
 class BlogView(ListView):
     model = Blog
-    template_name = 'blog.html'
+    template_name = 'blogs/blog.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(BlogView, self).get_context_data(*args, **kwargs)
@@ -57,7 +57,7 @@ class BlogView(ListView):
 
 class BlogDetailView(DetailView):
     model = Blog
-    template_name = 'blog_detail.html'
+    template_name = 'blogs/blog_detail.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
@@ -71,7 +71,7 @@ class BlogDetailView(DetailView):
 class AddReviewView(CreateView):
     model = Review
     form_class = ReviewForm
-    template_name = 'review.html'
+    template_name = 'review/review.html'
     success_url = reverse_lazy('review-view')
 
     def form_valid(self, form):
@@ -82,7 +82,7 @@ class AddReviewView(CreateView):
 
 class ReviewView(ListView):
     model = Review
-    template_name = 'review_view.html'
+    template_name = 'review/review_view.html'
 
     def get_context_data(self, *args, **kwargs):
         context  =super(ReviewView,self).get_context_data( *args, **kwargs)
@@ -94,7 +94,7 @@ class ReviewView(ListView):
 
 class TraveInfoView(ListView):
     model = TravelInfo
-    template_name = 'travelinfo.html'
+    template_name = 'travel-info/travelinfo.html'
 
     def get_context_data(self, *args , **kwargs):
         context = super(TraveInfoView,self).get_context_data(*args, **kwargs)
@@ -104,7 +104,7 @@ class TraveInfoView(ListView):
 
 class TraveInfoDetailView(DetailView):
     model = TravelInfo
-    template_name = 'travel_detail.html'
+    template_name = 'travel-info/travel_detail.html'
 
     def get_context_data(self, *args , **kwargs):
         context = super(TraveInfoDetailView,self).get_context_data(*args, **kwargs)
@@ -118,7 +118,7 @@ class TraveInfoDetailView(DetailView):
 
 class PageView(ListView):
     model = Page
-    template_name = 'page.html'
+    template_name = 'pages/page.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(PageView,self).get_context_data(*args, **kwargs)
@@ -128,7 +128,7 @@ class PageView(ListView):
 
 class PageDetailView(DetailView):
     model = Page
-    template_name = 'page_detail.html'
+    template_name = 'pages/page_detail.html'
     context_object_name = 'page'
 
     def get_object(self):
@@ -143,14 +143,14 @@ class PageDetailView(DetailView):
 
 class TripCategoryListView(ListView):
     model = TripCategory
-    template_name = 'trip_category.html'  # Template for the trip category list
+    template_name = 'trips/trip_category.html'  # Template for the trip category list
     context_object_name = 'categories'
 
 
 class TripCategoryDetailView(DetailView):
     model = TripCategory
     template_name = 'trip_category_detail.html'  # Template for trips under a category
-    context_object_name = 'trip_category'
+    context_object_name = 'trips/trip_category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -163,7 +163,7 @@ class TripCategoryDetailView(DetailView):
 
 class TripDetailView(DetailView):
     model = Trip
-    template_name = 'trips_details.html'
+    template_name = 'trips/trips_details.html'
     context_object_name = 'trip'
 
     def get_context_data(self, **kwargs):
@@ -180,20 +180,20 @@ class TripDetailView(DetailView):
 
 
 
-class MediaListView(ListView):
-    model = TripMedia
-    template_name = 'trip_media.html'
+# class MediaListView(ListView):
+#     model = TripMedia
+#     template_name = 'trip_media.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(TripMedia,self).get_context_data(*args, **kwargs)
-        return context
+#     def get_context_data(self, *args, **kwargs):
+#         context = super(TripMedia,self).get_context_data(*args, **kwargs)
+#         return context
 
 
 
 
 class GuideListView(ListView):
     model = Guide
-    template_name = 'Guide.html'
+    template_name = 'guides/Guide.html'
     
 
     def get_context_data(self, *args, **kwargs):
@@ -203,7 +203,7 @@ class GuideListView(ListView):
 
 class GuideDetailsView(DetailView):
     model = Guide
-    template_name = 'Guide_details.html'
+    template_name = 'guides/Guide_details.html'
     
 
     def get_context_data(self, *args, **kwargs):
@@ -214,7 +214,7 @@ class GuideDetailsView(DetailView):
 
 class MaterialsView(ListView):
     model = Materials
-    template_name = 'materials.html'
+    template_name = 'shops/materials.html'
 
     def get_context_data(self, *args, **kwargs):
         context  =super().get_context_data( *args, **kwargs)
@@ -224,7 +224,7 @@ class MaterialsView(ListView):
 
 class MaterialsDetailView(DetailView):
     model = Materials
-    template_name = 'materials_detail.html'
+    template_name = 'shops/materials_detail.html'
 
 
     def get_context_data( self, *args, **kwargs):
@@ -259,7 +259,7 @@ class AddtoCartView(LoginRequiredMixin, View):
 
 class CartListView(ListView, LoginRequiredMixin):
     model = AddToCart
-    template_name = 'add-to-cart.html'
+    template_name = 'carts/add-to-cart.html'
     context_object_name = 'AddToCart_list'
 
     def get_queryset(self):

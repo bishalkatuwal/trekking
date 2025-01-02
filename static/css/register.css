@@ -1,0 +1,122 @@
+/* Scoped CSS for the Register Page - Target only elements inside the .register-page container */
+
+.register-page {
+    background-color: #f4f7fc; /* Background color for the registration page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.register-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.title {
+    color: #2d3e50;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.divider {
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 20px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.already-registered {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.already-registered a {
+    color:#007bff;
+    text-decoration: none;
+}
+
+.already-registered a:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    padding: 12px;
+    background-color:red;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #dc3545;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .register-card {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-card {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+}

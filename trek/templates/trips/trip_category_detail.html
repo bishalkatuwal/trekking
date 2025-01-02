@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+                    {% block css %}
+                        <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+                    {% endblock %}
+
+
+                    <div class="container mt-4">
+                        <h1>{{ trip_category.title }}</h1>
+                        <hr>
+                        <div class="row">
+                            {% for trip in trips %}
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-body">
+
+                                        {% if trip.cover_img %}
+                                            <img src="{{ trip.cover_img.url }}" class="card-img-top" alt="{{trip.title}}">
+                                        {% else %}
+                                            <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="{{ trip.title}}">
+                                        {% endif %}
+
+
+
+                                        <h5 class="card-title">{{ trip.title }}</h5>
+                                        <div class="card-price">
+                                            <i class="fa fa-dollar-sign"></i>
+                                            <span>$ {{ trip.price }}</span>
+                                        </div>
+                                        <div class="card-seats">
+                                            <i class="fa fa-users"></i>
+                                            <span>{{ trip.available_seats }} seats available</span>
+                                        </div>
+                                        <p class="card-summary">{{ trip.summary|truncatechars:80 }}</p>
+                                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">View Details</a>
+                    <!-- trip booking -->
+
+
+                                        {% if user.is_authenticated %}
+                                            <form 
+                                                action="{% url 'booking_trip' trip.id %}" 
+                                                method="POST" 
+                                                style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-primary">
+                                                    Book Trip
+                                                </button>
+                                            </form>
+                                        {% else %}
+                                            <p>
+                                                <a href="{% url 'login' %}">Log in</a> to book this trip.
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+{% endblock %}

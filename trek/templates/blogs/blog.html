@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    {% endblock %}
+
+
+<div class="travel-blog-container">
+    <h1 class="main-heading">Explore Our Travel Blog</h1>
+
+    <div class="blog-cards">
+        {% for blog in object_list %}
+        <div class="blog-card">
+            <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
+            <div class="blog-content">
+                <a href="{% url 'detail' blog.pk %}" class="blog-title">{{ blog.title }}</a>
+                <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
+                <p class="blog-summary">{{ blog.summary|truncatechars:200 }}</p>
+                
+                <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
