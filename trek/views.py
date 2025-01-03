@@ -1,16 +1,13 @@
 from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect, HttpResponseRedirect
 from django.views.generic import CreateView, ListView, DetailView, DeleteView
-from .forms import ContactForm, ReviewForm
+from .forms import ContactForm, ReviewForm,BookingForm
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language, Booking
 from django.contrib import messages
 
 
-
-# def home_view(request):
-#     return render(request, 'home.html')
 
 
 class HomeView(ListView):
@@ -147,10 +144,13 @@ class TripCategoryListView(ListView):
     context_object_name = 'categories'
 
 
+
+# TRIPS 
+
 class TripCategoryDetailView(DetailView):
     model = TripCategory
-    template_name = 'trip_category_detail.html'  # Template for trips under a category
-    context_object_name = 'trips/trip_category'
+    template_name = 'trips/trip_category_detail.html'  # Template for trips under a category
+    context_object_name = 'trip_category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -176,17 +176,6 @@ class TripDetailView(DetailView):
         context['itinerary'] = itinerary 
         return context
 
-
-
-
-
-# class MediaListView(ListView):
-#     model = TripMedia
-#     template_name = 'trip_media.html'
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super(TripMedia,self).get_context_data(*args, **kwargs)
-#         return context
 
 
 
@@ -290,6 +279,9 @@ class RemoveCartView(View):
        
 
 
+class BookingView(CreateView):
+    template_name = 'trips/booking.html'
+    models = Booking
+    form_class = BookingForm
+    success_url = reverse_lazy('home')
 
-
-    

@@ -1,0 +1,130 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/trips.css' %}">
+{% endblock %}
+
+<div class="container booking-form-container">
+    <h2>Trip Booking Form</h2>
+
+    <form method="POST" class="booking-form">
+        {% csrf_token %}
+
+        <!-- Trips -->
+        <div class="form-group">
+            <label for="trips">Trips</label>
+            {{ form.trips }}
+        </div>  
+        
+        <!-- Full Name -->
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            {{ form.full_name }}
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            {{ form.email }}
+        </div>
+
+        <!-- Contact Number -->
+        <div class="form-group">
+            <label for="contact">Contact Number</label>
+            {{ form.contact }}
+        </div>
+
+        <!-- Emergency Contacts -->
+        <div class="form-group">
+            <label for="emergency_contacts">Emergency Contacts</label>
+            {{ form.emergency_contacts }}
+        </div>
+
+        <!-- Participants (Dynamic) -->
+        <div class="form-group">
+            <label for="participants">Number of Participants</label>
+            <div class="button-container">
+                <button type="button" id="decrease-participants" class="participant-button">-</button>
+                <input type="number" id="participants" name="participants" value="1" min="1" readonly>
+                <button type="button" id="increase-participants" class="participant-button">+</button>
+            </div>
+        </div>
+
+        <!-- Country (Dropdown or Text) -->
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" name="country" class="country-select">
+                <option value="">Select Country</option>
+                <option value="US">United States</option>
+                <option value="IN">India</option>
+                <option value="GB">United Kingdom</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <!-- Add more countries as needed -->
+            </select>
+            <input type="text" id="custom-country" name="country" placeholder="Or enter a country" class="custom-country-input">
+        </div>
+
+        <!-- Arrival Date -->
+        <div class="form-group">
+            <label for="arrival_date">Arrival Date</label>
+            {{ form.arrival_date }}
+        </div>
+
+        <!-- Departure Date -->
+        <div class="form-group">
+            <label for="departure_date">Departure Date</label>
+            {{ form.departure_date }}
+        </div>
+
+        <!-- Other Information -->
+        <div class="form-group">
+            <label for="others_information">Other Information</label>
+            {{ form.others_information }}
+        </div>
+        
+        <button type="submit" class="submit-btn">Submit Booking</button>
+    </form>
+</div>
+
+<!-- JavaScript for Dynamic Participants and Country Input -->
+<script>
+    // Dynamic Participant Input (Add / Remove)
+    const increaseButton = document.getElementById('increase-participants');
+    const decreaseButton = document.getElementById('decrease-participants');
+    const participantsInput = document.getElementById('participants');
+
+    increaseButton.addEventListener('click', function () {
+        let currentValue = parseInt(participantsInput.value);
+        participantsInput.value = currentValue + 1;
+    });
+
+    decreaseButton.addEventListener('click', function () {
+        let currentValue = parseInt(participantsInput.value);
+        if (currentValue > 1) {
+            participantsInput.value = currentValue - 1;
+        }
+    });
+
+    // Toggle between Dropdown and Text Input for Country
+    const countrySelect = document.getElementById('country');
+    const customCountryInput = document.getElementById('custom-country');
+
+    countrySelect.addEventListener('change', function () {
+        if (countrySelect.value === "") {
+            customCountryInput.style.display = 'block';
+        } else {
+            customCountryInput.style.display = 'none';
+        }
+    });
+
+    // Initialize custom country input visibility
+    if (countrySelect.value === "") {
+        customCountryInput.style.display = 'block';
+    }
+</script>
+
+{% endblock %}

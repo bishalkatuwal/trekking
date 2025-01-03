@@ -331,3 +331,26 @@ class AddToCart(models.Model):
 
 
 
+
+
+class Booking(models.Model):
+    trips = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    contact = models.CharField(max_length=15)
+    emergency_contacts = models.TextField()
+    booking_date = models.DateTimeField(auto_now_add=True)
+    participants = models.PositiveBigIntegerField()
+    country = models.CharField(max_length=100)
+    arrival_date = models.DateField()
+    departure_date = models.DateField()
+    others_information = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.full_name} - {self.email}"
+    
+
+
+
+
