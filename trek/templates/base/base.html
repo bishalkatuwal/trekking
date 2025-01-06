@@ -116,7 +116,7 @@
       </nav>
 
 
-      <a href="{% url 'booking' %}">BookingForm</a>
+      
 
 </section>
 
@@ -125,6 +125,52 @@
        {% block content %}
        {% endblock %}
    </main>
+
+
+   <section id="footer">
+    <div class="content">
+        <div class="content-block"> 
+            <!-- Main company heading with h2 -->
+            <h2>Trekking Nepal Ltd.</h2>
+
+            <address>
+                <!-- Address and Contact Info -->
+                <h3 class="block-title"><strong>Address:</strong> Putalisadak, Kathmandu, Nepal</h3>
+                <h3 class="block-title"><strong>Phone:</strong> +977 1-XXXXXXX</h3> 
+            </address>
+
+            <h3 class="block-title>
+                <a href="mailto:admin@gmail.com"><strong>Email:</strong> admin@gmail.com</a>
+            </h3>
+
+            <h3 class="block-title"><strong>Working Hours:</strong> Monday to Friday, 9:00 AM to 5:00 PM</h3>
+        </div>
+
+        <div class="social-links">
+            <!-- Social Links Section -->
+            <h2><strong>Follow us:</strong></h2>
+            <ul>
+                <li><a href="https://www.facebook.com/trekkingnepal" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://www.instagram.com/trekkingnepal" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://twitter.com/trekkingnepal" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+            </ul>
+        </div>
+
+        <div class="about-us">
+            <h2><strong>Our Pages</strong></h2>
+
+            <ul>
+                {% for page in pages %}
+                    <li><a href="{% url 'page_detail' page.slug %}">{{ page.title }}</a></li> 
+                {% endfor %}
+            </ul>
+        </div>    
+    </div>
+</section>
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -153,6 +153,7 @@ class TripCategoryDetailView(DetailView):
     context_object_name = 'trip_category'
 
     def get_context_data(self, **kwargs):
+        
         context = super().get_context_data(**kwargs)
         # Get trips associated with this category
         context['trips'] = Trip.objects.filter(trip_category=self.object)
@@ -284,4 +285,7 @@ class BookingView(CreateView):
     models = Booking
     form_class = BookingForm
     success_url = reverse_lazy('home')
+
+
+
 

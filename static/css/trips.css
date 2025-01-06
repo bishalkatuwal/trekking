@@ -285,18 +285,7 @@ hr {
 
 
 /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    padding: 20px;
-}
 
 .booking-form-container {
     max-width: 900px;

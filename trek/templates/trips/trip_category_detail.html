@@ -41,21 +41,7 @@
                     <!-- trip booking -->
 
 
-                                        {% if user.is_authenticated %}
-                                            <form 
-                                                action="{% url 'booking_trip' trip.id %}" 
-                                                method="POST" 
-                                                style="display: inline;">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-primary">
-                                                    Book Trip
-                                                </button>
-                                            </form>
-                                        {% else %}
-                                            <p>
-                                                <a href="{% url 'login' %}">Log in</a> to book this trip.
-                                            </p>
-                                        {% endif %}
+                                        
                                     </div>
                                 </div>
                             </div>

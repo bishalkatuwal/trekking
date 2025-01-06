@@ -14,64 +14,68 @@
 
 
 <!-- trips and camps sections -->
+    <div class="container">
+    <h5 class="trip-title">Our Trips & Camps </h5>
+    </div>
 
-<div class="container">
-<h5 class="trip-title">Our Trips & Camps </h5>
-</div>
-
-<div class="row">
-    {% for trip in trips %}
-        <div class="col">
-            <div class="card">
-                
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-plane-departure"></i> {{ trip.title }}
-                    </h5>
-                    <p class="card-summary">
-                        <i class="fas fa-info-circle"></i> {{ trip.summary|truncatechars:200 }}
-                    </p>
-                    <p class="card-price">
-                        <i class="fas fa-dollar-sign"></i> {{ trip.price }}
-                    </p>
-                    <p class="card-seats">
-                        <i class="fas fa-users"></i> {{ trip.available_seats }} seats available
-                    </p>
-                    <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-danger">
-                        <i class="fas fa-book"></i> Continue Reading
-                    </a>
+    <div class="row">
+        {% for trip in trips %}
+            <div class="col">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-plane-departure"></i> {{ trip.title }}
+                        </h5>
+                        <p class="card-summary">
+                            <i class="fas fa-info-circle"></i> {{ trip.summary|truncatechars:200 }}
+                        </p>
+                        <p class="card-price">
+                            <i class="fas fa-dollar-sign"></i> {{ trip.price }}
+                        </p>
+                        <p class="card-seats">
+                            <i class="fas fa-users"></i> {{ trip.available_seats }} seats available
+                        </p>
+                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-danger">
+                            <i class="fas fa-book"></i> Continue Reading
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="container more-button-container">
-    <a href="{% url 'trip_category_list' %}" class="btn btn-danger">View More</a>
-
-</div>
-
-
-
-<!-- blogs section -->
-<div class="travel-blog-container">
-    <h1 class="main-heading">Our Blogs</h1>
-
-    <div class="blog-cards">
-        {% for blog in blogs %}
-        <div class="blog-card">
-            <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
-            <div class="blog-content">
-                <a href="#" class="blog-title">{{ blog.title }}</a>
-                <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
-                <p class="blog-summary">{{ blog.summary|truncatechars:100 }}</p>
-                
-                <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
-            </div>
-        </div>
         {% endfor %}
     </div>
-</div>
+
+    <div class="container more-button-container">
+        <a href="{% url 'trip_category_list' %}" class="btn btn-danger">View More</a>
+
+    </div>
+
+
+
+    <!-- blogs section -->
+    <div class="travel-blog-container">
+        <h1 class="main-heading">Our Blogs</h1>
+
+        <div class="blog-cards">
+            {% for blog in blogs %}
+            <div class="blog-card">
+                <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
+                <div class="blog-content">
+                    <a href="#" class="blog-title">{{ blog.title }}</a>
+                    <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
+                    <p class="blog-summary">{{ blog.summary|truncatechars:100 }}</p>
+                    
+                    <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
 
 
 <!-- 
