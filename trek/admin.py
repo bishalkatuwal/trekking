@@ -9,7 +9,6 @@ from .models import( Contact,
                     TripCategory,
                     Trip,
                     Destination,
-                    TripBooking,
                     TripMedia,
                     BlogMedia,
                     Guide,
@@ -17,7 +16,7 @@ from .models import( Contact,
                     Materials,
                     AddToCart,
                     Itinerary,
-                    Booking
+                    TripsBooking
 
                     )
 
@@ -54,7 +53,6 @@ admin.site.register(TripCategory)
 admin.site.register(Destination)
 admin.site.register(Page)
 admin.site.register(ChildPage)
-admin.site.register(TripBooking)
 admin.site.register(TripMedia)
 admin.site.register(BlogMedia)
 admin.site.register(Guide, GuideAdmin)
@@ -63,6 +61,5 @@ admin.site.register(Materials)
 admin.site.register(AddToCart)
 admin.site.register(Itinerary)
 
-admin.site.register(Booking)
-
+admin.site.register(TripsBooking)
 

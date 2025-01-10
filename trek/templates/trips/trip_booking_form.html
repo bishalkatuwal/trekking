@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+            {% block css %}
+            <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+            {% endblock %}
+
+            <div class="booking-container">
+                <h1 class="booking-title">Book Your Trip: {{ trip.title }}</h1>
+                <div class="booking-form-wrapper">
+                    <form method="post" class="booking-form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn-submit">Submit Booking</button>
+                    </form>
+                </div>
+            </div>
+
+{% endblock %}

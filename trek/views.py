@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect, HttpResponseRedirect
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
-from .forms import ContactForm, ReviewForm,BookingForm
-from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, DetailView , FormView
+from .forms import ContactForm, ReviewForm,TripsBookingForm
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language, Booking
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language, TripsBooking
 from django.contrib import messages
+from django.http import HttpResponse
+from django.core.exceptions import ValidationError   
 
 
 
@@ -35,9 +37,10 @@ class ContactView(CreateView):
     model = Contact
     form_class = ContactForm
     template_name = 'contacts/contact.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success')
 
-
+def success_view(request):
+    return render(request, 'contacts/success.html')
 
 
 class BlogView(ListView):
@@ -138,6 +141,11 @@ class PageDetailView(DetailView):
         return context
 
 
+
+
+
+
+
 class TripCategoryListView(ListView):
     model = TripCategory
     template_name = 'trips/trip_category.html'  # Template for the trip category list
@@ -145,7 +153,7 @@ class TripCategoryListView(ListView):
 
 
 
-# TRIPS 
+
 
 class TripCategoryDetailView(DetailView):
     model = TripCategory
@@ -280,12 +288,21 @@ class RemoveCartView(View):
        
 
 
-class BookingView(CreateView):
-    template_name = 'trips/booking.html'
-    models = Booking
-    form_class = BookingForm
-    success_url = reverse_lazy('home')
 
+class TripsBookingView(FormView):
+    template_name = 'trips/trip_booking_form.html'
+    form_class = TripsBookingForm
+    
 
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(**kwargs)
+        # Get the trip object from the URL parameter
+        trip = get_object_or_404(Trip, id=self.kwargs['trip_id'])
+        context['trip'] = trip  # Pass trip to the context for the template
+        return context
 
-
+    def get_success_url(self):
+        # Redirect to a success page after booking (could be a confirmation page)
+        return reverse_lazy('home')  # Define this in your URLs  
+    

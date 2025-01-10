@@ -228,19 +228,6 @@ class ChildPage(models.Model):
     
 
 
-class TripBooking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
-    add_date = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('user', 'trip')
-    
-    def __str__(self):
-        return f"{self.user.username}'s list - {self.trip.title}"
-
-
-
 class Language(models.Model):
     name = models.CharField(max_length=200, unique=True)
 
@@ -333,8 +320,12 @@ class AddToCart(models.Model):
 
 
 
-class Booking(models.Model):
+
+#TRIPS BOOKING
+
+class TripsBooking(models.Model):
     trips = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     contact = models.CharField(max_length=15)
@@ -346,11 +337,7 @@ class Booking(models.Model):
     departure_date = models.DateField()
     others_information = models.TextField()
 
-
     def __str__(self):
         return f"{self.full_name} - {self.email}"
-    
-
-
-
-
+        
+            
