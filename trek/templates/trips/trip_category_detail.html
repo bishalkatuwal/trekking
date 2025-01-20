@@ -39,7 +39,7 @@
                         <p class="trip-card-summary">{{ trip.summary|truncatechars:80 }}</p>
                         <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary trip-card-btn">View Details</a>
                         {% if user.is_authenticated %}
-                            <a href="{% url 'trip_booking' trip.id %}" class="btn btn-danger trip-card-btn">Book Trip</a>
+                            <a href="#" class="btn btn-danger trip-card-btn">Book Trip</a>
                         {% else %}
                             <p class="text-warning">Login to Book!</p>
                         {% endif %}

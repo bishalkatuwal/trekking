@@ -16,7 +16,8 @@ from .models import( Contact,
                     Materials,
                     AddToCart,
                     Itinerary,
-                    TripsBooking
+                    TripBooking
+             
 
                     )
 
@@ -43,7 +44,7 @@ class LanguageAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(TripBooking)
 admin.site.register(Contact)
 admin.site.register(Blog)
 admin.site.register(Category)
@@ -60,6 +61,4 @@ admin.site.register(Language, LanguageAdmin)
 admin.site.register(Materials)
 admin.site.register(AddToCart)
 admin.site.register(Itinerary)
-
-admin.site.register(TripsBooking)
 

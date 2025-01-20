@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_list_or_404,get_object_or_404, redirect, HttpResponseRedirect
 from django.views.generic import CreateView, ListView, DetailView , FormView
-from .forms import ContactForm, ReviewForm,TripsBookingForm
+from .forms import ContactForm, ReviewForm, TripBookingForm
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide, Language, TripsBooking
+from.models import Contact, Blog, Review,  TravelInfo, Trip, Page, TripCategory , AddToCart, Materials, TripMedia, BlogMedia, Guide
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core.exceptions import ValidationError   
@@ -60,6 +60,7 @@ class BlogDetailView(DetailView):
     template_name = 'blogs/blog_detail.html'
 
     def get_context_data(self, *args, **kwargs):
+        
         context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
         blog = self.object  # Use the object retrieved by DetailView
         blog_media = BlogMedia.objects.filter(blog=blog)  # Fetch related BlogMedia
@@ -94,7 +95,7 @@ class ReviewView(ListView):
 
 class TraveInfoView(ListView):
     model = TravelInfo
-    template_name = 'travel-info/travelinfo.html'
+    template_name = 'travel-info/travel_detail.html'
 
     def get_context_data(self, *args , **kwargs):
         context = super(TraveInfoView,self).get_context_data(*args, **kwargs)
@@ -288,21 +289,30 @@ class RemoveCartView(View):
        
 
 
-
-class TripsBookingView(FormView):
-    template_name = 'trips/trip_booking_form.html'
-    form_class = TripsBookingForm
-    
+class TripBookingView(FormView):
+    template_name = 'trips/trip_booking_form.html'  # Template to render
+    form_class = TripBookingForm  # Form to use
+    success_url = reverse_lazy('booking_success')  # Redirect URL after success
 
     def get_context_data(self, **kwargs):
-        
+        # Add additional context to the template
         context = super().get_context_data(**kwargs)
-        # Get the trip object from the URL parameter
-        trip = get_object_or_404(Trip, id=self.kwargs['trip_id'])
-        context['trip'] = trip  # Pass trip to the context for the template
+        context['trips'] = Trip.objects.all()  # Add trips for dropdown
         return context
 
-    def get_success_url(self):
-        # Redirect to a success page after booking (could be a confirmation page)
-        return reverse_lazy('home')  # Define this in your URLs  
+    def form_valid(self, form):
+        # Handle valid form submission
+        trip_booking = form.save(commit=False)
+        trip_booking.user = self.request.user  # Set the logged-in user
+        trip_booking.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Handle invalid form submission
+        return super().form_invalid(form)
     
+
+
+
+def booking_success(request):
+    return render(request, 'booking_success.html')

@@ -1,5 +1,5 @@
 from django import forms
-from.models import Contact, Review, TripsBooking
+from.models import Contact, Review, TripBooking
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -15,10 +15,17 @@ class ReviewForm(forms.ModelForm):
 
 # Trips Booking Form
 
-
-class TripsBookingForm(forms.ModelForm):
+class TripBookingForm(forms.ModelForm):
     class Meta:
-        model = TripsBooking
-        fields = ['trips', 'full_name', 'email', 'contact', 'emergency_contacts', 'participants', 
-                  'country', 'arrival_date', 'departure_date', 'others_information']
-
+        model = TripBooking
+        fields = [
+            'trips', 'trip_start_date', 'full_name', 'email_address',
+            'country', 'contact_number', 'emergency_number',
+            'flight_arrival_date', 'flight_departure_date', 'others_informations'
+        ]
+        widgets = {
+            'trip_start_date': forms.DateInput(attrs={'type': 'date'}),
+            'flight_arrival_date': forms.DateInput(attrs={'type': 'date'}),
+            'flight_departure_date': forms.DateInput(attrs={'type': 'date'}),
+            'others_informations': forms.Textarea(attrs={'rows': 4}),
+        }

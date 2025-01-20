@@ -4,19 +4,61 @@
 
 
 
-            {% block css %}
-            <link rel="stylesheet" href="{% static 'css/trips.css' %}">
-            {% endblock %}
 
-            <div class="booking-container">
-                <h1 class="booking-title">Book Your Trip: {{ trip.title }}</h1>
-                <div class="booking-form-wrapper">
-                    <form method="post" class="booking-form">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn-submit">Submit Booking</button>
-                    </form>
-                </div>
-            </div>
+  {% block css %}
 
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+
+  {% endblock %}  
+
+  <div class="container">
+    <h1>Trip Booking Form</h1>
+    <form action="/book-trip/" method="POST">
+      {% csrf_token %}
+      <!-- Trip -->
+      <label for="trip">Select Trip:</label>
+      <select id="trip" name="trip" required>
+        <option value="">-- Select a Trip --</option>
+        {% for trip in trips %}
+        <option value="{{ trip.id }}">{{ trip.name }}</option>
+        {% endfor %}
+      </select>
+
+      <!-- Full Name -->
+      <label for="full_name">Full Name:</label>
+      <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+
+      <!-- Email Address -->
+      <label for="email_address">Email Address:</label>
+      <input type="email" id="email_address" name="email_address" placeholder="Enter your email" required>
+
+      <!-- Country -->
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" placeholder="Enter your country" required>
+
+      <!-- Contact Number -->
+      <label for="contact_number">Contact Number:</label>
+      <input type="text" id="contact_number" name="contact_number" placeholder="Enter your contact number" required>
+
+      <!-- Emergency Number -->
+      <label for="emergency_number">Emergency Number:</label>
+      <input type="text" id="emergency_number" name="emergency_number" placeholder="Enter an emergency number" required>
+
+      <!-- Flight Dates -->
+      <label for="flight_arrival_date">Flight Arrival Date:</label>
+      <input type="date" id="flight_arrival_date" name="flight_arrival_date" required>
+
+      <label for="flight_departure_date">Flight Departure Date:</label>
+      <input type="date" id="flight_departure_date" name="flight_departure_date" required>
+
+      <!-- Other Information -->
+      <label for="others_informations">Additional Information:</label>
+      <textarea id="others_informations" name="others_informations" rows="4" placeholder="Enter any additional information"></textarea>
+
+      <!-- Submit Button -->
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+
+  {% endblock %}

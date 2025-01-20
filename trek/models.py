@@ -320,24 +320,37 @@ class AddToCart(models.Model):
 
 
 
-
-#TRIPS BOOKING
-
-class TripsBooking(models.Model):
-    trips = models.ForeignKey(Trip, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class TripBooking(models.Model):
+    trips = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trip_bookings')
+    trip_start_date = models.DateField()
     full_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    contact = models.CharField(max_length=15)
-    emergency_contacts = models.TextField()
-    booking_date = models.DateTimeField(auto_now_add=True)
-    participants = models.PositiveBigIntegerField()
+    email_address = models.EmailField()
     country = models.CharField(max_length=100)
-    arrival_date = models.DateField()
-    departure_date = models.DateField()
-    others_information = models.TextField()
+    contact_number = models.CharField(max_length=15)  # Changed to CharField for flexibility with country codes
+    emergency_number = models.CharField(max_length=15)  # Same as above
+    flight_arrival_date = models.DateField()
+    flight_departure_date = models.DateField()  # Fixed typo in "depature"
+    others_informations = models.TextField(blank=True, null=True)  # Made optional
+
+    booked_on = models.DateTimeField(auto_now_add=True)  # Automatically records booking time
+    status_choices = [
+        ('PENDING', 'Pending'),
+        ('CONFIRMED', 'Confirmed'),
+        ('CANCELED', 'Canceled'),
+    ]
+    status = models.CharField(max_length=10, choices=status_choices, default='PENDING')
 
     def __str__(self):
-        return f"{self.full_name} - {self.email}"
-        
-            
+        return f"Booking for {self.full_name} ({self.trips.name})"
+
+    class Meta:
+        ordering = ['-booked_on']  # Orders bookings by newest first
+        unique_together = ('trips', 'user', 'trip_start_date') 
+
+
+
+
+
+
+    
