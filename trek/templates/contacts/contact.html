@@ -1,36 +1,65 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block content %} 
 
-{% block content %}
-    <!-- Add custom CSS for the contact page -->
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-    {% endblock %}
 
-    <!-- Contact Form Section -->
-    <section class="contact-section">
-        <div class="contact-form-container">
-            <h2>Contact Us</h2>
-            <form action="#" method="POST" class="contact-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Your email address" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Number</label>
-                    <input type="text" id="subject" name="number" placeholder="Your contact number" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Your message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+
+
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/Contact.css' %}">
+
+{% endblock %}
+
+
+
+
+<div class="heading">
+    <h3>Contact Us</h3>
+    <p>Any Querise ? Let Us Know</p>
+</div>
+
+
+<div class="contact-container">
+    <div class="contact-form">
+       
+        <form method="post" action="{% url 'contact-page' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Name</label>
+                <input type="text" id="name" name="name" required aria-label="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" required aria-label="Your Email">
+            </div>
+            <div class="form-group">
+                <label for="contact"><i class="fas fa-phone"></i> Contact</label>
+                <input type="text" id="subject" name="number" required aria-label="Contact">
+            </div>
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment"></i> Message</label>
+                <textarea id="message" name="message" rows="5" required aria-label="Your Message"></textarea>
+            </div>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+    </div>
+    <div class="contact-info">
+       
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.3965542500437!2d85.32235316370655!3d27.705039956462773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a64b5f13e1%3A0x28b2d0eacda46b98!2z4KSq4KWB4KSk4KSy4KWA4KS44KSh4KSVLCDgpJXgpL7gpKDgpK7gpL7gpKHgpYzgpIEgNDQ2MDA!5e0!3m2!1sne!2snp!4v1737453897822!5m2!1sne!2snp"
+            width="100%" 
+            height="300" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Trekking St, Adventure City, Country</p>
+        <p><i class="fas fa-phone"></i> +123 456 7890</p>
+        <p><i class="fas fa-envelope"></i> info@trekking.com</p>
+    </div>
+</div>
+
 {% endblock %}

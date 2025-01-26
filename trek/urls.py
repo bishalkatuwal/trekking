@@ -36,7 +36,7 @@ from.views import ( ContactView ,
 urlpatterns = [
 
 
-    path('trip-booking/', TripBookingView.as_view(), name = 'trip_booking'),
+    path('book-trip/<int:pk>/', TripBookingView.as_view(), name='book_trip'),
     path('booking-success/', booking_success, name='booking_success'),
     path('contacts/success/', success_view, name='success'),   
     path('add-to-cart/', CartListView.as_view(), name = 'cart-list-view'),

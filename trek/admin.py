@@ -16,7 +16,8 @@ from .models import( Contact,
                     Materials,
                     AddToCart,
                     Itinerary,
-                    TripBooking
+                    TripBooking,
+                    Trips_review
              
 
                     )
@@ -61,4 +62,5 @@ admin.site.register(Language, LanguageAdmin)
 admin.site.register(Materials)
 admin.site.register(AddToCart)
 admin.site.register(Itinerary)
+admin.site.register(Trips_review)
 

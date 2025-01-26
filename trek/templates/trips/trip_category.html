@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ category.title }}</h5>
                     <p class="card-summary text-muted">{{ category.summary|truncatechars:100 }}</p>
-                    <a href="{% url 'trip_category_detail' category.slug %}" class="btn btn-primary btn-block">View Trips</a>
+                    <a href="{% url 'trip_category_detail' category.slug %}" class="btn btn-danger btn-block">View Trips</a>
                 </div>
             </div>
         </div>

@@ -2,63 +2,95 @@
 {% load static %}
 {% block content %}
 
-
-
-
   {% block css %}
-
     <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome -->
+  {% endblock %}
 
-  {% endblock %}  
+  <div class="booking-container">
+    <div class="booking-header">
+      <h2>Book Your Adventure</h2>
+      <p class="subheading">Secure your spot on this amazing trip!</p>
+    </div>
 
-  <div class="container">
-    <h1>Trip Booking Form</h1>
-    <form action="/book-trip/" method="POST">
+    <div class="trip-details">
+      <h3 class="trip-title">{{ trip.title }}</h3>
+    </div>
+
+    <form method="post" class="booking-form">
       {% csrf_token %}
-      <!-- Trip -->
-      <label for="trip">Select Trip:</label>
-      <select id="trip" name="trip" required>
-        <option value="">-- Select a Trip --</option>
-        {% for trip in trips %}
-        <option value="{{ trip.id }}">{{ trip.name }}</option>
-        {% endfor %}
-      </select>
+      
+      <!-- Trip Selection -->
+      <div class="form-group">
+        <label for="trips"><i class="fas fa-map-marker-alt"></i> Select Trip:</label>
+        {{ form.trips }}
+      </div>
+
+      <!-- Trip Start Date -->
+      <div class="form-group">
+        <label for="trip_start_date"><i class="fas fa-calendar-alt"></i> Trip Start Date:</label>
+        {{ form.trip_start_date }}
+      </div>
 
       <!-- Full Name -->
-      <label for="full_name">Full Name:</label>
-      <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+      <div class="form-group">
+        <label for="full_name"><i class="fas fa-user"></i> Full Name:</label>
+        {{ form.full_name }}
+      </div>
 
       <!-- Email Address -->
-      <label for="email_address">Email Address:</label>
-      <input type="email" id="email_address" name="email_address" placeholder="Enter your email" required>
+      <div class="form-group">
+        <label for="email_address"><i class="fas fa-envelope"></i> Email Address:</label>
+        {{ form.email_address }}
+      </div>
 
       <!-- Country -->
-      <label for="country">Country:</label>
-      <input type="text" id="country" name="country" placeholder="Enter your country" required>
+      <div class="form-group">
+        <label for="country"><i class="fas fa-globe"></i> Country:</label>
+        {{ form.country }}
+      </div>
 
       <!-- Contact Number -->
-      <label for="contact_number">Contact Number:</label>
-      <input type="text" id="contact_number" name="contact_number" placeholder="Enter your contact number" required>
+      <div class="form-group">
+        <label for="contact_number"><i class="fas fa-phone-alt"></i> Contact Number:</label>
+        {{ form.contact_number }}
+      </div>
 
-      <!-- Emergency Number -->
-      <label for="emergency_number">Emergency Number:</label>
-      <input type="text" id="emergency_number" name="emergency_number" placeholder="Enter an emergency number" required>
+      <!-- Emergency Contact Number -->
+      <div class="form-group">
+        <label for="emergency_number"><i class="fas fa-phone-volume"></i> Emergency Contact:</label>
+        {{ form.emergency_number }}
+      </div>
 
-      <!-- Flight Dates -->
-      <label for="flight_arrival_date">Flight Arrival Date:</label>
-      <input type="date" id="flight_arrival_date" name="flight_arrival_date" required>
+      <!-- Flight Arrival Date -->
+      <div class="form-group">
+        <label for="flight_arrival_date"><i class="fas fa-plane-arrival"></i> Flight Arrival Date:</label>
+        {{ form.flight_arrival_date }}
+      </div>
 
-      <label for="flight_departure_date">Flight Departure Date:</label>
-      <input type="date" id="flight_departure_date" name="flight_departure_date" required>
+      <!-- Flight Departure Date -->
+      <div class="form-group">
+        <label for="flight_departure_date"><i class="fas fa-plane-departure"></i> Flight Departure Date:</label>
+        {{ form.flight_departure_date }}
+      </div>
 
-      <!-- Other Information -->
-      <label for="others_informations">Additional Information:</label>
-      <textarea id="others_informations" name="others_informations" rows="4" placeholder="Enter any additional information"></textarea>
+      <!-- Additional Information -->
+      <div class="form-group">
+        <label for="others_informations"><i class="fas fa-info-circle"></i> Additional Information:</label>
+        {{ form.others_informations }}
+      </div>
 
       <!-- Submit Button -->
-      <button type="submit">Book Now</button>
+      <div class="form-group">
+        <button type="submit" class="btn-submit"><i class="fas fa-check-circle"></i> Submit Booking</button>
+      </div>
     </form>
   </div>
 
 
-  {% endblock %}
+
+
+
+  
+
+{% endblock %}

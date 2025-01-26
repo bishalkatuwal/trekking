@@ -127,8 +127,8 @@ class Trip(models.Model):
     summary = models.TextField(blank=True, null=True)
     description = FroalaField(default="Default description text")
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='trips', default=1)
-    start_date = models.DateTimeField(default=timezone.now)
-    end_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.now)
     available_seats = models.PositiveBigIntegerField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     
@@ -342,13 +342,24 @@ class TripBooking(models.Model):
     status = models.CharField(max_length=10, choices=status_choices, default='PENDING')
 
     def __str__(self):
-        return f"Booking for {self.full_name} ({self.trips.name})"
+        return f"Booking for {self.full_name} ({self.trips.title})"
 
     class Meta:
         ordering = ['-booked_on']  # Orders bookings by newest first
         unique_together = ('trips', 'user', 'trip_start_date') 
 
 
+
+
+class Trips_review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)    
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE,related_name='reviews')
+    rating = models.PositiveIntegerField()
+    review = models.TextField()
+    post_date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.trip.title} - {self.user.username}"
 
 
 

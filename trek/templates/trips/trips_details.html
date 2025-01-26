@@ -2,88 +2,153 @@
 {% load static %}
 {% block content %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/trips.css' %}">
+{% endblock %}
+
+<div class="container mt-5">
+    <h1 class="trip-title text-center">{{ trip.title }}</h1>
+    <div class="trip-details-container">
+        <p><i class="fa fa-map-marker-alt"></i> <strong>Destination:</strong> {{ trip.destination }}</p>
+        <p><i class="fa fa-calendar-day"></i> <strong>Start Date:</strong> {{ trip.start_date }}</p>
+        <p><i class="fa fa-calendar-alt"></i> <strong>End Date:</strong> {{ trip.end_date }}</p>
+        <p><i class="fa fa-dollar-sign"></i> <strong>Price:</strong> ${{ trip.price }}</p>
+        <p><i class="fa fa-users"></i> <strong>Available Seats:</strong> {{ trip.available_seats }}</p>
+    </div>
+
+    <hr>
+
+    <div class="trip-description mt-4">
+        <h3>Description</h3>
+        <p>{{ trip.description|safe }}</p>
+    </div>
+</div>
 
 
 
-            {% block css %}
-                <link rel="stylesheet" href="{% static 'css/trips.css' %}">
-            {% endblock %}  
-
-            <div class="container mt-4">
-                <h1>{{ trip.title }}</h1>
-                <p><i class="fa fa-map-marker-alt"></i> <strong>Destination:</strong> {{ trip.destination }}</p>
-                <p><i class="fa fa-calendar-day"></i> <strong>Start Date:</strong> {{ trip.start_date }}</p>
-                <p><i class="fa fa-calendar-alt"></i> <strong>End Date:</strong> {{ trip.end_date }}</p>
-                <p><i class="fa fa-dollar-sign"></i> <strong>Price:</strong> ${{ trip.price }}</p>
-                <p><i class="fa fa-users"></i> <strong>Available Seats:</strong> {{ trip.available_seats }}</p>
-                <hr>
-                <p>{{ trip.description|safe }}</p>
+{% if media %}
+<!-- Gallery Section -->
+<div class="container mt-5">
+    <h2 class="gallery-title text-center">Gallery of Our Trips And Tours</h2>
+    <div class="media-container">
+        {% for item in media %}
+            <div class="media-item">
+                <img src="{{ item.image.url }}" alt="{{ item.caption }}" class="media-image img-fluid">
+                {% if item.video %}
+                    <video class="media-video" controls>
+                        <source src="{{ item.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+                {% if item.caption %}
+                    <p class="media-caption">{{ item.caption }}</p>
+                {% endif %}
             </div>
+        {% endfor %}
+    </div>
+</div>
 
-            <div class="container">
-                <h2 class="gallery-title">Gallery of Our Trips And Tours</h2>
+{% endif %}
+
+
+
+
+
+<!-- Itinerary Section -->
+{% if itinerary %}
+<div class="itinerary mt-5">
+    <h2 class="itinerary-title text-center">Trip Itinerary</h2>
+    {% for day in itinerary %}
+        <div class="itinerary-day mb-4">
+            <h4 class="day-title">Day {{ day.day_no }}: {{ day.title }}</h4>
+            <div class="itinerary-container">
+                {% if day.flight_hours %}
+                    <p class="itinerary-info">
+                        <i class="fa fa-plane"></i> <strong>Flight Hours:</strong> {{ day.flight_hours }} min
+                    </p>
+                {% endif %}
+                <p class="itinerary-info">
+                    <i class="fa fa-map-marker-alt"></i> <strong>Trek Distance:</strong> {{ day.distance }} km
+                </p>
+                <p class="itinerary-info">
+                    <i class="fa fa-mountain"></i> <strong>Highest Altitude:</strong> {{ day.highest_altitude }} m
+                </p>
+                <p class="itinerary-info">
+                    <i class="fa fa-clock"></i> <strong>Trek Duration:</strong> {{ day.trek_duration }} hrs
+                </p>
             </div>
+            <div class="day-summary">
+                <p>{{ day.summary|safe }}</p>
+            </div>
+        </div>
+        <hr class="divider">
+    {% endfor %}
+</div>
+{% endif %}
 
-            <div class="media-container">
-                {% for item in media %}
-                    <div class="media-item">
-                        <img src="{{ item.image.url }}" alt="{{ item.caption }}" class="media-image">
+
+
+
+
+
+<!-- Reviews Section -->
+<div class="reviews mt-5">
+    <h2 class="reviews-title text-center">User Reviews</h2>
+
+    {% for review in reviews %}
+        <div class="review-item mb-4">
+            <!-- User and Profile Picture -->
+            <div class="review-header d-flex align-items-center">
+                {% if review.user.profile.profile_pic %}
+                    <img src="{{ review.user.profile.profile_pic.url }}" alt="Profile Picture" class="profile-pic">
+                {% else %}
+                    <img src="{% static 'images/Pp.png' %}" alt="Profile Picture" class="profile-pic">
+                {% endif %}
+                
+                <p><strong>{{ review.user.first_name }} {{ review.user.last_name}}</strong></p>
+
+
+            </div>
+            <p><small class="text-muted">{{ review.post_date }}</small></p>
+            <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
+            <!-- Review Text -->
+            <p class="review-text">{{ review.review }}</p>
+            
                         
-                        {% if item.video %}
-                            <video class="media-video" controls>
-                                <source src="{{ item.video.url }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        {% endif %}
-                        
-                        {% if item.caption %}
-                            <p class="media-caption">{{ item.caption }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+        </div>
+    {% empty %}
+        <p class="no-reviews text-center">No reviews yet. Be the first to share your experience!</p>
+    {% endfor %}
+</div>
 
 
 
-            <!-- itenary  -->
-            {% if itinerary %}
-            <div class="itinerary">
-                <h1 class="itinerary-title">Trip Itinerary</h1>
-                {% for day in itinerary %}
-                    <div class="itinerary-day">
-                        <h4 class="day-title">Day {{ day.day_no }}: {{ day.title }}</h4>
-                        <div class="itinerary-container">
-                                {% if day.flight_hours %}
-                                    <p class="itinerary-info">
-                                        <i class="fa fa-plane"></i>
-                                        <strong>Flight Hours:</strong> {{ day.flight_hours }} min
-                                    </p>
-                                {% endif %}
-                
-                                <p class="itinerary-info">
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <strong>Trek Distance:</strong> {{ day.distance }} km
-                                </p>
-                
-                                <p class="itinerary-info">
-                                    <i class="fa fa-mountain"></i>
-                                    <strong>Highest Altitude:</strong> {{ day.highest_altitude }} m
-                                </p>
-                
-                                <p class="itinerary-info">
-                                    <i class="fa fa-clock"></i>
-                                    <strong>Trek Duration:</strong> {{ day.trek_duration }} hrs
-                                </p>
-                        </div>
-                        <div class="day-summary">
-                            <p>{{ day.summary|safe }}</p>
-                        </div>
-                    </div>
-                    <hr class="divider">
-                {% endfor %}
-            </div>
-        {% endif %}
-        
+
+
+
+
+<!-- Review Form Section (Only for authenticated users) -->
+{% if user.is_authenticated %}
+<div class="container-sm mt-5">
+    <h2 class="text-center">Leave a Review</h2>
+    <form method="POST" action="{% url 'trip_detail' slug=trip.slug %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </div>
+    </form>
+</div>
+{% else %}
+<div class="alert alert-danger mt-4" role="alert">
+    <h4 class="alert-heading">Not Logged In!</h4>
+    <p>Please log in to submit a review.</p>
+</div>
+{% endif %}
+
+
+
+
 
 
 
