@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/core.html' %}
 {% load static %}
 {% block content %}
 
@@ -10,21 +10,28 @@
 <div class="travel-blog-container">
     <h1 class="main-heading">Explore Our Travel Blog</h1>
 
-    <div class="blog-cards">
-        {% for blog in object_list %}
-        <div class="blog-card">
-            <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
-            <div class="blog-content">
-                <a href="{% url 'detail' blog.pk %}" class="blog-title">{{ blog.title }}</a>
-                <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
-                <p class="blog-summary">{{ blog.summary|truncatechars:200 }}</p>
+    <div class="travel-blog-container">
+        <div class="blog-cards">
+            {% for blog in object_list %}
+            <div class="blog-card">
+                <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
+                <div class="blog-content">
+                    <p class="blog-title">{{ blog.title }}</p>
                 
-                <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
-            </div>
+                    <div class="flex">
+                        <p class="blog-author"> {{ blog.author.username }}</p>
+                        <p class="blog-date">{{ blog.post_date }}</p>
+                    </div>
+                    <p class="blog-summary">{{ blog.summary|truncatechars:200 }}</p>
+
+                    <a href="{% url 'detail' blog.pk %}" class="continue">Read More</a>
+                    
+                </div>
+                
+            </div>  
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
 
 
 

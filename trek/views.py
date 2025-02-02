@@ -21,10 +21,11 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # You can add other context data here
-        context['trips'] = Trip.objects.all()
+        context['trips'] = Trip.objects.all()[:6]
         context['categories'] = TripCategory.objects. select_related('trip','categories').all()
         context['pages'] = Page.objects.all()  
-        context['blogs'] = Blog.objects.all()    
+        context['blogs'] = Blog.objects.all()[:3]   
+        context['reviews'] = Review.objects.all()
         return context
 
     def get_queryset(self):

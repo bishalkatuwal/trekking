@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/core.html' %}
 {% load static %}
 {% block content %}
 
@@ -65,20 +65,9 @@
     </div>
 
     <div class="guide-actions">
-        {% if not user.is_authenticated %}
-            <p id="alert-el"></p>
-            <a href="#" class="btn btn-danger" id="hire-el" onclick="hire()"><i class="fas fa-lock"></i> Hire</a>
-        {% else %}
-            <a href="#" class="btn btn-primary"><i class="fas fa-user-check"></i> Hire</a>
-        {% endif %}
+            <a href="#" class="guide-details-btn">Hire</a>
+        
     </div>
 </div>
-
-<script>
-    let alertEl = document.getElementById('alert-el');
-    function hire() {
-        alertEl.textContent = 'Login first to hire the guide!';
-    }
-</script>
 
 {% endblock %}

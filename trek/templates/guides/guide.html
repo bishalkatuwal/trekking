@@ -1,38 +1,30 @@
-{% extends 'base/base.html' %}
+{% extends 'base/core.html' %}
 {% load static %}
 {% block content %}
 
-
-
-
 {% block css %}
-
     <link rel="stylesheet" href="{% static 'css/guide.css' %}">
-
 {% endblock %}
-
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Meet Our Guides</h2>
-  
-    
 
     <div class="row">
         {% for guide in object_list %}
-        <div class="col-md-4 mb-4">
-            <!-- Card for each guide -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">  <!-- 4 cards in large screens, 2 in medium, 1 in small -->
+            <!-- Guide Card -->
             <div class="card guide-card">
                 {% if guide.photo %}
                     <img class="card-img-top guide-photo" src="{{ guide.photo.url }}" alt="{{ guide.name }}">
                 {% else %}
                     <img class="card-img-top guide-photo" src="{% static 'images/profile-pic-extra.png' %}" alt="{{ guide.name }}">
                 {% endif %}
-                    <div class="card-body">
+                <div class="card-body">
                     <h5 class="card-title">{{ guide.name }}</h5>
                     <div class="card-text">
-                        <p><i class="fas fa-calendar-check"></i> Spare from: {{ guide.available_from }}</p>
-                        <p><i class="fas fa-calendar-times"></i> Spare to: {{ guide.available_to }}</p>
-                        <a href="{% url 'guide_details' guide.pk %}" class="btn btn-danger">Continue Reading</a>
+                        <p><i class="fas fa-calendar-check"></i> Available from: {{ guide.available_from }}</p>
+                        <p><i class="fas fa-calendar-times"></i> Available to: {{ guide.available_to }}</p>
+                        <a href="{% url 'guide_details' guide.pk %}" class="guide-details-btn">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -40,4 +32,5 @@
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}

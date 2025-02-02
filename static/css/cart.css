@@ -5,6 +5,16 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
+
+h2{
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+
 .messages {
     margin-bottom: 20px;
 }
@@ -26,10 +36,12 @@
 }
 .cart-item h3 {
     font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
     color: #343a40;
 }
 .cart-item p {
     margin: 0;
+    font-family: 'Times New Roman', Times, serif;
     color: #6c757d;
 }
 .cart-item p.price {
@@ -75,23 +87,29 @@
     color: #dc3545;
     font-size: 1.2rem;
 }
-.btn-primary{
+.btn-danger{
     margin-top:20px;
+    font-family: 'Times New Roman', Times, serif;
     display: block;
     width: 100%;
     max-width: 200px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 30px;
-    border: none;
-    background-color: #007bff;
-    color: #ffffff;
+    border: 1px solid red;
+    background-color:white;
+    color: red;
     padding: 10px 20px;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s;
 
 
+
+}
+.btn-danger:hover{
+    background-color: red;
+    color: white;
+    text-decoration: none;
 
 }
 .not-logged-in {

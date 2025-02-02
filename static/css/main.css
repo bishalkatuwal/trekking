@@ -1,137 +1,130 @@
-/* -------------------------------- */
-/*         GLOBAL CSS               */
-/* --------------------------------- */
+/* --------------------------------------------HOMEPAGE NAVBAR-------------------------------------------------------- */
 
-body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
+
+#header {
+   
+    justify-content: center;
+    align-items: center;
+   
+  
+}
+
+.container-sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    gap: 20px; /* Better spacing */
+    height: 60vh;
+   
+}
+
+.content {
+    display: flex;
+    justify-content: space-around; /* Center items when they wrap */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+#nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#nav-links li {
+    list-style: none;
+    display: inline-block; /* Ensures proper spacing */
+}
+
+#nav-links a {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+#nav-links a:hover {
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.auth a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    transition: color 0.3s ease;
     
 }
-#header {
-        background-color: white;
-        color: green;
-        padding: 20px 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        top: 0;
-        position: sticky;
-    }
 
-    .content{
-        display: flex;
-        justify-content: space-between;
-        gap: 900px;
-        align-items: center;
-
-    }
-
-    .logo img{
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-
-    }
-
-    .login-btn{
-        display: flex;
-        gap: 30px;
-        text-decoration: none;
-
-
-
-    }
-
-
-#nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-#nav li {
-    list-style: none;
-}
-
-#nav a {
-    text-decoration: none;
-    margin-right: 20px; 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 17px;
-    color: black;
-    padding: 8px 16px; 
-    border: 1px solid transparent; 
-    border-radius: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.auth a:hover {
+    color: #007bff;
+    cursor: pointer;
 }
 
 
-#nav a:hover {
-    background-color: red;
-    color: white; 
+.logo img{
+    width: 90px;
+    height: 90px;
 }
+.search-bar input{
 
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ----------------------------------------------- */
-/*                  FOOTER SECTION                   */
-/* -------------------------------------------------- */
-
-
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Footer Section */
-#footer {
-    background-color: #333;
+    width: 700px;
+    height: 4vh;
+    border-radius: 30px;
+    background-color: transparent;
+    border: 1px solid white;
     color: white;
-    padding: 40px 20px;
-    text-align: left;
+    padding: 10px;
+    font-size: 1em;
+    
 }
 
-#footer .content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-.content h2{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5em;
+.info h3{
+    font-size: 2em;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    color: white;
-    margin-bottom: 20px;
+    margin-bottom: 20px ;
+    
 }
 
-.block-title{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.8em;
+.info p{
+    font-size: 1em;
     color: white;
-    font-weight: 100;
+    font-family:'Times New Roman', Times, serif;
+    margin-bottom: 20px ;
+    
 }
 
-.content a{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.8em;
-    color: white;
-    font-weight: 100;
+/* ----------------------------------------------GLOBAL NAVBAR---------------------------------------------------------- */
+
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20vh;
+   
+}
+
+#navbar {
+    margin-bottom: 40px;
+    background-color: rgba(253, 253, 253, 0.966);
+    border-radius: 10px; /* Adjust the value as needed */
+    padding: 10px 20px; /* Adds some spacing */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
 }

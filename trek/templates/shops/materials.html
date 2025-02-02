@@ -1,43 +1,35 @@
-{% extends 'base/base.html' %}
+{% extends 'base/core.html' %}
 {% load static %}
 {% block content %}
-
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/materials.css' %}">
 {% endblock %}
 
-<div class="container-sm">
-    <h5 class="trip-title">Explore the Shop</h5>
-</div>
+<div class="container">
+    <h2 class="material-title">Explore The Shop</h2>
 
-<div class="product-list">
-    {% for materials in object_list %}
-    <div class="product-card">
-        <div class="product-image">
-            <img src="{{ materials.image.url }}" alt="{{ materials.title }}">
-        </div>
-        <div class="product-details">
-            <h2 class="product-title">{{ materials.title }}</h2>
-            <p class="product-price">${{ materials.price }}</p>
-            <div class="product-actions">
+    <div class="product-list">
+        {% for materials in object_list %}
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{ materials.image.url }}" alt="{{ materials.title }}">
+            </div>
+            <div class="product-details">
+                <h3 class="product-title">{{ materials.title }}</h3>
+                <p class="product-price">${{ materials.price }}</p>
                 
-                <form action="{% url 'add-to-cart' materials.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn add-to-cart">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </form>
+                <div class="product-actions">
+                
 
-                <a href="{% url 'materials_detail' materials.pk %}">
-                    <button class="btn details">
+                    <a href="{% url 'materials_detail' materials.pk %}" class="btn-details">
                         <i class="fas fa-info-circle"></i> Details
-                    </button>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}

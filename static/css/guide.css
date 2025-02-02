@@ -2,97 +2,124 @@
 /*        GUIDE VIEW      */
 /* -------------------------- */
 
-
-.row{
-    max-width: 900px;
-    margin-top: 10px;
-    padding: 0 15px;
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-
-h2{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 50px;
+/* Title Styling */
+h2 {
+    
+    font-size: 3em;
     font-weight: bold;
-    color: black;
- 
+    color: #333;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
 }
 
+/* Guide Card */
 .guide-card {
-    border: 1px solid #ddd; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    margin-top: 30px; 
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
 }
 
 .guide-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Guide Image */
 .guide-photo {
     height: 250px;
-    object-fit: cover;  /* Ensures the image covers the area without stretching */
-    border-radius: 10px 10px 0 0;  /* Rounded corners on the top */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
 }
 
-/* Card body text */
+/* Card Body */
 .card-body {
     padding: 20px;
-    height: 36vh;
+    
 }
 
-/* Title of the card */
+/* Guide Name */
 .card-title {
-   font-family: 'Courier New', Courier, monospace;
-   font-size: 18px;
-   font-weight: bold;
-   color: black;
-    margin-bottom: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Guide Details */
+.card-text {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    color: #333;
 }
 
 .card-text i {
-    color: #28a745;  
+    color: #e63946;
+    margin-right: 8px;
 }
 
-.card-text p {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 15px;
-    color: black;
-    font-weight: 100;
-
+/* Button Styling */
+.guide-details-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+   
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.btn-danger{
-    font-size: 14px;
-    font-family: 'Courier New', Courier, monospace;
-    border: none;
-    border-radius: 30px;
-    align-items: center;
-    justify-content: center;
-    color: white;
+.guide-details-btn:hover {
     background-color: red;
-
+    color: white;
+    text-decoration: none;
+    transform: translateY(-3px);
 }
 
-.btn-danger:hover{
-    background-color: rgba(255, 0, 0, 0.445);
+/* Responsive Design */
+@media (max-width: 992px) {  /* For medium screens (Tablets) */
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
 }
 
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .guide-card {
-        width: 100%;
+@media (max-width: 768px) {  /* For small screens (Phones) */
+    .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 
     .guide-photo {
-        height: 180px;
+        height: 200px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-text {
+        font-size: 14px;
     }
 }
-
 
 
 /* ----------------------------- */
@@ -116,9 +143,9 @@ h2{
 .guide-header h2 {
     font-size: 2rem;
     color: black;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .guide-header img {
@@ -155,8 +182,9 @@ h2{
 
 .guide-header p{
     margin-top: 30px;
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    color: #555;
     text-align: left;
 
 }
@@ -178,14 +206,13 @@ h2{
 .info-block p {
     margin: 0 0 10px;
     font-size: 1rem;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Times New Roman', Times, serif;
     color: #333;
    
 }
 
 .info-block strong {
-    font-family: 'Courier New', Courier, monospace;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: black;
     

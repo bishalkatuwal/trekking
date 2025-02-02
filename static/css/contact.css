@@ -1,6 +1,7 @@
 .heading {
   text-align: center;
   margin-bottom: 40px;
+  margin-top: 40px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
@@ -8,17 +9,18 @@
 
 .heading h3{
 
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 3em;
-  color: black;
   font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+
 }
 
 .heading p{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.5em;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
   color: black;
-  
   
 }
 
@@ -60,16 +62,18 @@
 }
 
 button {
-  background-color: rgb(201, 2, 2);
-  color: white;
+  background-color:white;
+
+  color:red ;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid red;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
+  color: white;
   background-color: red;
 }
 

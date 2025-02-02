@@ -1,226 +1,283 @@
 /*--------  MATERIALS VIEW -------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    /* Container for all products */
-    .product-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 20px;
-    }
+body {
+  background-color: #f9f9f9;
+}
 
-    /* Individual product card */
-    .product-card {
-        width: calc(20% - 20px); /* Set the width to 20% for 5 cards per row */
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 10px; /* Space between cards */
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
+/* Container */
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 30px 20px;
+}
 
-    /* Hover effect on product card */
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
+/* Title */
+.material-title {
+  font-size: 3em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+  text-align: center;
+  color: #222;
+  margin-bottom: 30px;
+}
 
-    /* Product image */
-    .product-image img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
+/* Product List */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px;
+  justify-content: center;
+  padding: 0 20px;
+}
 
-    /* Product details */
-    .product-details {
-        padding: 20px;
-    }
+/* Product Card */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 15px;
+  text-align: center;
+}
 
-    .product-title {
-        font-size: 18px;
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: bold;
-        color: black;
-        margin-bottom: 10px;
-    }
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
 
-    .product-price {
-        font-size: 16px;
-        font-family: 'Courier New', Courier, monospace;
-        color: #007BFF;
-        margin-bottom: 10px;
-    }
+/* Product Image */
+.product-image img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
 
-    /* Action buttons */
-    .product-actions {
-        display: flex;
-        justify-content: space-between;
-    }
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
 
-    .btn {
-        padding: 8px 12px;
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border-radius: 30px;
-    }
+/* Product Title */
+.product-title {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  color: #333;
+  margin: 12px 0 8px;
+}
 
-    .add-to-cart {
-        background-color: #28a745;
-        color: #fff;
-        font-size: 12px;
-    }
+/* Product Price */
+.product-price {
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  color: #e63946;
+  font-weight: bold;
+}
 
-    .add-to-cart:hover {
-        background-color: #218838;
-    }
+/* Product Actions */
+.product-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
 
-    .details {
-        background-color: #007BFF;
-        color: #fff;
-        font-size: 12px;
-    }
+/* Buttons */
+.btn-details {
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+  background-color: white;
+  border: 1.5px solid red;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
 
-    .details:hover {
-        background-color: #0056b3;
-    }
+.btn-details:hover {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-3px);
+}
 
-    /* FontAwesome icons style */
-    .fas {
-        margin-right: 8px;
-    }
+/* No Products Message */
+.no-products {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-top: 20px;
+}
 
-    .container-sm {
-        text-align: center;
-        justify-content: center;
-    }
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+}
 
-    h5 {
-        text-align: center;
-        justify-content: center;
-        margin-bottom: 50px;
-        margin-top: 50px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 50px;
-        font-weight: bold;
-    }
+@media (max-width: 900px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
 
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-        .product-card {
-            width: calc(33.33% - 20px); /* 3 cards per row on medium screens */
-        }
-    }
+@media (max-width: 600px) {
+  .product-list {
+    grid-template-columns: repeat(1, 1fr); /* 1 card per row */
+  }
 
-    @media (max-width: 768px) {
-        .product-card {
-            width: calc(50% - 20px); /* 2 cards per row on smaller screens */
-        }
-    }
+  .product-title {
+    font-size: 16px;
+  }
 
-    @media (max-width: 480px) {
-        .product-card {
-            width: 100%; /* 1 card per row on mobile */
-        }
-    }
+  .product-price {
+    font-size: 16px;
+  }
 
+  .btn-details {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
 
 
     /*---------------MATERIALS DETAILS----------  */
 
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+    
+    /* Row */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Material Card */
     .material-card {
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      padding: 15px;
+      max-width: 300px;
+    }
+    
+    .material-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Product Image */
+    .material-card-img-top {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .material-card:hover .material-card-img-top {
+      transform: scale(1.05);
+    }
+    
+    /* Product Title */
+    .material-card-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1em;
+      font-weight: bold;
+      color: black;
+      margin: 10px 0;
+    }
+    
+    /* Product Description */
+    .material-card-text {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    /* Product Price & Quantity */
+    .material-card-price,
+    .material-card-quantity {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+
+      color: red;
+      margin-bottom: 10px;
+    }
+    
+    /* Button Area */
+    .btn-area {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+    
+    /* Buttons */
+    .btn-custom {
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Times New Roman', Times, serif;
+      color: red;
+      background-color: white;
+      border: 1px solid red;
+      padding: 10px 15px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+    }
+    
+    .btn-custom:hover {
+      background-color:red;
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .material-card {
+        max-width: 90%;
       }
-      
-      .material-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    @media (max-width: 576px) {
+      .btn-area {
+        flex-direction: column;
+        gap: 10px;
       }
-      
-      .material-card-img-top {
-        max-height: 200px;
-        object-fit: cover;
-        width: 100%;
-        border-bottom: 2px solid #f1f1f1;
-      }
-      
-      .material-card-body {
-        padding: 20px;
-        background-color: #fff;
-      }
-      
-      .material-card-title {
-        font-size: 1.25rem;
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: 600;
-        color: black;
-      }
-      
-      .material-card-title i {
-        margin-right: 8px; /* Add space between icon and text */
-        color: #007bff; /* Blue color for icons */
-      }
-      
-      .material-card-text {
-        font-size: 0.95rem;
-        font-family: 'Courier New', Courier, monospace;
-        color:  black;
-        margin-bottom: 15px;
-      }
-      
-      .material-card-price {
-        font-size: 1.1rem;
-        font-family: 'Courier New', Courier, monospace;
-        color: #007bff; /* Green for the price */
-        font-weight: bold;
-      }
-      
-      .material-card-price i {
-        margin-right: 8px;
-      }
-      
-      .material-card-quantity {
-        font-size: 1rem;
-        font-family: 'Courier New', Courier, monospace;
-        color: #dc3545; /* Red for the quantity */
-      }
-      
-      .material-card-quantity i {
-        margin-right: 8px;
-      }
-      .btn-area{
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        
-      }
-      .btn-custom {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 15px;
-        font-size: 13px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease-in-out;
-      }
-      
-      .btn-custom:hover {
-        background-color: #0056b3;
-        text-decoration: none;
-      }
-      
-      .btn-custom i {
-        margin-right: 8px; /* Space between the cart icon and text */
-      }
-      
+    }
+    

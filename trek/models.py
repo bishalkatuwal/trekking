@@ -41,7 +41,7 @@ class Blog(models.Model):
     category = models.ForeignKey( Category,  on_delete=models.SET_NULL , blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     body = FroalaField()
-    post_date = models.DateTimeField(auto_now_add=True)
+    post_date = models.DateField(default=timezone.now)
    
 
     def __str__(self):
@@ -355,13 +355,10 @@ class Trips_review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)    
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE,related_name='reviews')
     rating = models.PositiveIntegerField()
-    review = models.TextField()
+    review = RichTextField()
     post_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return f"{self.trip.title} - {self.user.username}"
 
 
-
-
-    

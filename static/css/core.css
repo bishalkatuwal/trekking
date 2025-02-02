@@ -1,0 +1,97 @@
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20vh;
+   
+}
+
+#navbar {
+    margin-bottom: 40px;
+    background-color: rgba(253, 253, 253, 0.966);
+    border-radius: 10px; /* Adjust the value as needed */
+    padding: 10px 20px; /* Adds some spacing */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+
+#header {
+   
+    justify-content: center;
+    align-items: center;
+   
+  
+}
+
+.container-sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    gap: 20px; /* Better spacing */
+    height: 60vh;
+   
+}
+
+.content {
+    display: flex;
+    justify-content: space-around; /* Center items when they wrap */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+#nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#nav-links li {
+    list-style: none;
+    display: inline-block; /* Ensures proper spacing */
+}
+
+#nav-links a {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+#nav-links a:hover {
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.auth a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    transition: color 0.3s ease;
+    
+}
+
+.auth a:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+
+.logo img{
+    width: 90px;
+    height: 90px;
+}

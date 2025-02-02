@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------------------------------- */
 
  .category-title {
-        color: black;
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 1.5rem;
+       font-family: 'Times New Roman', Times, serif;
+       font-size: 2em;
+       font-weight: bold;
+       color: black;
+       margin-bottom: 100px;
     }
 
     .card {
@@ -15,6 +15,7 @@
         border-radius: 10px;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
     }
 
     .card:hover {
@@ -30,29 +31,33 @@
     .card-title {
         color: #000;
         font-size: 1.25rem;
+        font-family: 'Times New Roman', Times, serif;
         margin-bottom: 0.5rem;
     }
 
     .card-summary {
         color: #555;
+        font-family: 'Times New Roman', Times, serif;
         font-size: 0.95rem;
         line-height: 1.5;
-        margin-bottom: 1rem;
+        margin-bottom: 30px;
+        
     }
 
     .btn {
-        background-color: #dc3545;
-        color: white;
+        background-color: white;
+        color: red;
         font-size: 1rem;
-        font-weight: bold;
-        padding: 10px 20px;
+        font-family: 'Times New Roman', Times, serif;
+        border: 1px solid red;
+      flex-grow: 1;
         border-radius: 5px;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .btn:hover {
-        background-color: #c82333;
-        color: #f8f9fa;
+        background-color: red;
+        color: white;
     }
 
     @media (max-width: 768px) {
@@ -83,141 +88,103 @@
 /*                                        TRIPS CATEGORY DETAILS PAGE                                   */
 /* ---------------------------------------------------------------------------------------------------- */
 
-
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-/* Category Title */
 .category-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: black;
-    text-transform: uppercase;
-    margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
 }
 
-/* Divider */
 .divider {
-    border: 1px solid #ddd;
-    width: 100%;
-    margin-bottom: 30px;
+  width: 50px;
+  height: 4px;
+  background: red;
+  margin: 10px auto 30px;
 }
 
-/* Trip Card */
 .trip-card {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .trip-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.trip-card-img-top {
-    height: 200px;
-    object-fit: cover;
-    
+.trip-card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .trip-card-body {
-    position: relative;
-    padding: 0;
-}
-
-/* Trip Details */
-.trip-card-details {
-    padding: 20px;
-    text-align: center;
+  padding: 15px;
+  flex-grow: 1;
 }
 
 .trip-card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: black;
-    
+  font-size: 1.2em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
 }
 
-.trip-card-price {
-    font-size: 1.125rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #28a745;
+.trip-card-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  color: #777;
+  margin: 10px 0;
 }
 
-.trip-card-seats {
-    font-size: 1rem;
-    color: #6c757d;
+.trip-card-summary{
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-/* Hover Effect */
 .trip-card-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+  margin-top: auto;
+  padding: 10px;
 }
 
-.trip-card:hover .trip-card-hover {
-    opacity: 1;
+.btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.trip-card-summary {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.trip-card-btn {
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 25px;
-    margin: 5px;
-    text-transform: uppercase;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
-}
-
-.trip-card-btn:hover {
-    background-color: #0056b3;
-    color: #fff;
-    transform: scale(1.05);
+.text-warning {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #d9534f;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .trip-card-img-top {
-        height: 150px;
-    }
-
-    .category-title {
-        font-size: 2rem;
-    }
-
-    .trip-card-title {
-        font-size: 1.125rem;
-    }
-
-    .trip-card-price {
-        font-size: 1rem;
-    }
+  .trip-card-title {
+      font-size: 1.2rem;
+  }
 }
+
+
+
+
 
 /* ------------------------------------------------------------------------------------------------ */
 /*                                      TRIPS BOOKING FORM                                           */

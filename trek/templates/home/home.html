@@ -13,61 +13,188 @@
 
 
 
-<!-- trips and camps sections -->
-    <div class="container">
-    <h5 class="trip-title">Our Trips & Camps </h5>
+    <div class="content-hero">
+        <div class="container-hero">
+            <img src="{%  static 'images/placeholder.png' %}" alt="icons">
+            <h3>Handpick Destination</h3>
+            <p>Our strict screening process means you’re <br>
+               only seeing the best quality treks.
+            </p>
+        </div>
+
+        <div class="container-hero">
+            <img src="{%  static 'images/tag.png' %}" alt="icons">
+            <h3>Best Price Guaranteed</h3>
+            <p>Our Best Price Guarantee means that you can <br>
+                be sure of booking at the best rate.
+            </p>
+        </div>
+
+
+        <div class="container-hero">
+            <img src="{%  static 'images/customer-service.png' %}" alt="icons">
+            <h3>24/7 Customer Service</h3>
+            <p>Our customer are standing by 24/7 to make your <br>
+               experience incredible.
+            </p>
+        </div>
+
     </div>
 
+
+
+<!-- trips and camps sections -->
+    <div class="container">
+    <p class="trip-head">Top Destinations</p>
+    <h5 class="trip-title">Discover Breathtaking Adventures</h5>
+    <p class="trip-title-foot">Start your journey with our expertly curated trips</p>
+    </div>
+
+
+    
     <div class="row">
         {% for trip in trips %}
             <div class="col">
                 <div class="card">
-                    
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-plane-departure"></i> {{ trip.title }}
-                        </h5>
-                        <p class="card-summary">
-                            <i class="fas fa-info-circle"></i> {{ trip.summary|truncatechars:200 }}
-                        </p>
-                        <p class="card-price">
-                            <i class="fas fa-dollar-sign"></i> {{ trip.price }}
-                        </p>
-                        <p class="card-seats">
-                            <i class="fas fa-users"></i> {{ trip.available_seats }} seats available
-                        </p>
-                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-danger">
-                            <i class="fas fa-book"></i> Continue Reading
-                        </a>
-                    </div>
+                            <div class="card-body">
+                                
+                                {% if trip.cover_img %}
+                                    <img src="{{ trip.cover_img.url }}" class="trip-card-img-top" alt="{{ trip.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/no-image.png' %}" class="trip-card-img-top" alt="{{ trip.title }}">
+                                {% endif %}
+
+                                <a href="{% url 'trip_detail' trip.slug %}">
+                                <h5 class="card-title">
+                                        {{ trip.title }}
+                                </h5>
+                                </a>
+                                <p class="card-summary">
+                                    {{ trip.summary|truncatechars:90 }}
+                                </p>
+
+                                <div class="border"></div>
+                                
+
+                                <p class="card-location">
+                                    <i class="fas fa-map-marker-alt"></i> {{ trip.destination.country }}
+                                
+                                </p>
+                                <p class="card-dates">
+                                    <i class="fas fa-calendar-alt"></i> {{ trip.start_date }} - {{ trip.end_date }}
+
+                                </p>
+                                <p class="price">
+                                    <i class="fas fa-dollar-sign"></i> {{ trip.price }}
+                                </p>
+                            </div>
+
                 </div>
             </div>
         {% endfor %}
     </div>
 
-    <div class="container more-button-container">
-        <a href="{% url 'trip_category_list' %}" class="btn btn-danger">View More</a>
 
+<!-- REVIEW SECTION  -->
+    <div class="container">
+        <p class="trip-head">Testimonials</p>
+        <h5 class="trip-title">Client Testimonials</h5>
+        <p class="trip-title-foot">Real travelers. Real stories. Real opinions to help you make the right choice.</p>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <div class="review-section">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for review in reviews %}
+                    <div class="swiper-slide review-card">
+                        <div class="review-header">
+
+                            {% if review.user.profile.profile_pic %}
+                                <img src="{{ review.user.profile.profile_pic.url }}" alt="profile picture">
+                            {% else %}
+                                <img src="{% static 'images/Pp.png' %}" alt="profile picture">
+                            {% endif %}
+
+                            <div class="user-info">
+                                <h4>{{ review.user.first_name }} {{ review.user.last_name}}</h4>
+                                <p class="post-date">{{ review.post_date }}</p>
+                                <p class="review-body">{{ review.body }}</p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                {% endfor %}
+            </div>
+        
+        </div>
+    </div>
+    
+
+    <div class="foot-content">
+        <a href="{% url 'review-view' %}">Read All Testimonials</a>
     </div>
 
 
 
-    <!-- blogs section -->
-    <div class="travel-blog-container">
-        <h1 class="main-heading">Our Blogs</h1>
 
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true, // Infinite loop
+            autoplay: {
+                delay: 5000, // Auto-slide every 5 sec
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            slidesPerView: 1, // Show only one review at a time
+            spaceBetween: 30, // Space between slides
+        });
+    </script>
+    
+    
+   
+    
+
+
+
+    <!-- blogs section -->
+    <div class="container">
+        <p class="trip-head">Blogs & Trips</p>
+        <h5 class="trip-title">Travel Tips & Blogs</h5>
+        <p class="trip-title-foot">Latest travel trips & blogs covering all the travel expierence</p>
+    </div>
+
+    <div class="travel-blog-container">
         <div class="blog-cards">
             {% for blog in blogs %}
             <div class="blog-card">
                 <img class="blog-image" src="{{ blog.header_image.url }}" alt="{{ blog.title }} Image">
                 <div class="blog-content">
-                    <a href="#" class="blog-title">{{ blog.title }}</a>
-                    <p class="blog-author">by {{ blog.author.first_name }} {{ blog.author.last_name }}</p>
-                    <p class="blog-summary">{{ blog.summary|truncatechars:100 }}</p>
+                    <p class="blog-title">{{ blog.title }}</p>
+                
+                    <div class="flex">
+                        <p class="blog-author"> {{ blog.author.username }}</p>
+                        <p class="blog-date">{{ blog.post_date }}</p>
+                    </div>
+                    <p class="blog-summary">{{ blog.summary|truncatechars:200 }}</p>
+
+                    <a href="{% url 'detail' blog.pk %}" class="continue">Read More</a>
                     
-                    <a href="{% url 'detail' blog.pk %}" class="btn btn-danger">Continue Reading</a>
                 </div>
-            </div>
+                
+            </div>  
             {% endfor %}
         </div>
     </div>

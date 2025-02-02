@@ -1,54 +1,58 @@
-{% extends 'base/base.html' %}
+{% extends 'base/core.html' %}
 {% load static %}
 {% block content %}
 
-
-
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/materials.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 {% endblock %}
 
-
 <div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-4">
-      <div class="material-card">
-        <!-- Product Image -->
-        <img src="{{ materials.image.url }}" class="material-card-img-top" alt="Product image">
-        <div class="material-card-body">
-          <!-- Product Title -->
-          <h5 class="material-card-title">
-            <i class="fas fa-box"></i> {{ materials.title }}
-          </h5>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="material-card">
+                <!-- Product Image -->
+                {% if materials.image %}
+                    <img src="{{ materials.image.url }}" class="material-card-img-top" alt="{{ materials.title }}">
+                {% else %}
+                    <img src="{% static 'images/placeholder.jpg' %}" class="material-card-img-top" alt="No Image Available">
+                {% endif %}
 
-          <!-- Product Description -->
-          <p class="material-card-text">{{ materials.description }}</p>
+                <div class="material-card-body">
+                    <!-- Product Title -->
+                    <h5 class="material-card-title">
+                        <i class="fas fa-box"></i> {{ materials.title }}
+                    </h5>
 
-          <!-- Price with Icon -->
-          <p class="material-card-price">
-            <i class="fas fa-dollar-sign"></i>Price: ${{ materials.price }}
-          </p>
+                    <!-- Product Description -->
+                    <p class="material-card-text">{{ materials.description }}</p>
 
-          <!-- Available Quantity with Icon -->
-          <p class="material-card-quantity">
-            <i class="fas fa-cogs"></i> Available Quantity: {{ materials.quantity }}
-          </p>
+                    <!-- Price with Icon -->
+                    <p class="material-card-price">
+                        <i class="fas fa-dollar-sign"></i> Price: ${{ materials.price }}
+                    </p>
 
-          <!-- Buy Now Button with Cart Icon -->
-          <div class="btn-area">
-            <a href="#" class="btn btn-custom">
-              <i class="fas fa-shopping-cart"></i> Buy Now
-            </a>
-            <a href="#" class="btn btn-custom">
-              <i class="fas fa-key"></i> Rent
-            </a>
-          </div>  
+                    <!-- Available Quantity with Icon -->
+                    <p class="material-card-quantity">
+                        <i class="fas fa-cogs"></i> Available Quantity: {{ materials.quantity }}
+                    </p>
+
+                    <!-- Buy Now & Rent Buttons -->
+                    <div class="btn-area">
+                        <a href="#" class="btn btn-custom">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </a>
+                          <form action="{% url 'add-to-cart' materials.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-custom">
+                              Add to Cart
+                          </button>
+                      </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
-
-
 
 {% endblock %}
